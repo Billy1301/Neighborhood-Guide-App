@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.billy.bill_neightborhood_guide.DataListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+
+    <ImageView
+        android:id="@+id/list_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/android_arms"
+        android:adjustViewBounds="true"
+        android:maxHeight="80dp"
+        android:maxWidth="80dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/address_textView"
+        android:text="address"
+        android:textSize="25dp"
+        android:layout_toEndOf="@+id/list_image"
+        />
+
+    <TextView
+        android:id="@+id/header_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="description......."
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_toEndOf="@+id/list_image"
+        android:layout_below="@+id/address_textView"/>
+
+
+
+
+
+
+</com.example.billy.bill_neightborhood_guide.DataListView>

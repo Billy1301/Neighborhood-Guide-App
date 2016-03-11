@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Lake Merritt Neighborhood Guide</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_description_layout">description_layout</string>
+</resources>
