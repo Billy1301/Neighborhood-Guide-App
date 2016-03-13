@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.billy.bill_neightborhood_guide.MainActivity">
+    tools:context="com.example.billy.bill_neighborhood_guide.MainActivity">
 
 
     <LinearLayout
@@ -19,7 +19,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_text"
+        android:id="@+id/main_edit_text"
         android:textSize="20dp"
         android:layout_weight="1"/>
 
@@ -29,32 +29,64 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:text="search"
-        android:layout_weight="1"/>
+        android:layout_weight="1.5"
+        />
 
 
     </LinearLayout>
 
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/main_recyclerview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/main_layout">
+        android:layout_height="wrap_content"
+        android:id="@+id/main_layout_two"
+        android:orientation="vertical"
+        android:layout_below="@+id/main_layout"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/activity_textview"
+            android:text="@string/text_view2"
+            android:textSize="30sp"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/restuarant_textview"
+            android:text="@string/text_view1"
+            android:textSize="30sp"
+            android:layout_marginTop="15sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/shop_textview"
+            android:text="@string/text_view3"
+            android:textSize="30sp"
+            android:layout_marginTop="15sp"
+
+            />
+
+    </LinearLayout>
 
 
-    </android.support.v7.widget.RecyclerView>
+
 
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/float_button"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/heart"
+        android:src="@drawable/hearticon"
         />
 
 

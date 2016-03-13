@@ -1,4 +1,4 @@
-package com.example.billy.bill_neightborhood_guide;
+package com.example.billy.bill_neighborhood_guide;
 
 import org.junit.Test;
 

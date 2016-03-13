@@ -2,4 +2,9 @@
     <string name="app_name">Lake Merritt Neighborhood Guide</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_description_layout">description_layout</string>
+    <string name="text_view1">Restaurants</string>
+    <string name="text_view2">Activities</string>
+    <string name="text_view3">Shops</string>
+
+
 </resources>

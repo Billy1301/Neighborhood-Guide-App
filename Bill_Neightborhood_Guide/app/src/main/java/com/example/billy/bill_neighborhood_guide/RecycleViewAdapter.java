@@ -1,4 +1,4 @@
-package com.example.billy.bill_neightborhood_guide;
+package com.example.billy.bill_neighborhood_guide;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,23 +10,22 @@ import java.util.List;
 /**
  * Created by Billy on 3/8/16.
  */
-public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.CustomHolder> {
+public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.CustomHolder> {
 
-    //Our collection actually that backs our RecyclerView. Placeholder for data that we will bring in.
+    //Our collection actually that backs our RecyclerView. Placeholder for activityData that we will bring in.
     ArrayList<String> dataItems;
 
-    // public abstract ___ (){} <--- creates an abstract method. We don't know exactly what it does, but we have one for the user to define later
 
     //Constructor. Initialze our actual ArrayList;
-    //Uses this one if no data is inputted from MainActivity ====> CustomListAdapter
-    public CustomListAdapter() {
+    //Uses this one if no activityData is inputted from MainActivity ====> RecycleViewAdapter
+    public RecycleViewAdapter() {
         dataItems = new ArrayList<>();  //All this does is create an ArrayList
     }
 
-    // Constructor if there is an input of ArrayList<String> it sets this.dataItems to the data that we inputted dataItems
-    // called in mainActivity ======>>>> customAdapter = new data.add("Restaurant 1");
-    public CustomListAdapter(ArrayList<String> dataItems) {
-        this.dataItems = dataItems;  // Pass in an existing object, which may or may not be populated with data. so that this has access to the data
+    // Constructor if there is an input of ArrayList<String> it sets this.dataItems to the activityData that we inputted dataItems
+    // called in mainActivity ======>>>> customAdapter = new activityData.add("Restaurant 1");
+    public RecycleViewAdapter(ArrayList<String> dataItems) {
+        this.dataItems = dataItems;  // Pass in an existing object, which may or may not be populated with activityData. so that this has access to the activityData
     }
 
     public void addItem(String data){
@@ -43,13 +42,14 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Cu
     @Override
     public CustomHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        DataListView dataListView = (DataListView) LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_view, parent, false);
+        DataListView dataListView = (DataListView) LayoutInflater.from(parent.getContext()).inflate(R.layout.result_layout_view, parent, false);
+
         return new CustomHolder(dataListView);
     }
 
     @Override  //Connects view to our actual collection
-    public void onBindViewHolder(CustomHolder holder, int position) {  //Get the item that we are currently on, when scrolling. Get corresponding data item to our collection
-        holder.bindTo(dataItems.get(position));  // Get a string, and use our bindTo, and pass that data to our view
+    public void onBindViewHolder(CustomHolder holder, int position) {  //Get the item that we are currently on, when scrolling. Get corresponding activityData item to our collection
+        holder.bindTo(dataItems.get(position));  // Get a string, and use our bindTo, and pass that activityData to our view
     }
 
     @Override
@@ -68,7 +68,7 @@ public class CustomListAdapter extends RecyclerView.Adapter<CustomListAdapter.Cu
             dataListView = itemView;
         }
 
-        // Define a custom method that allows us to pass data to our view
+        // Define a custom method that allows us to pass activityData to our view
         // Can use findviewbyId here, but we use the class to separate the adapter and view
         public void bindTo(String data){
             dataListView.bindTo(data);  // This will use the method from our class.
