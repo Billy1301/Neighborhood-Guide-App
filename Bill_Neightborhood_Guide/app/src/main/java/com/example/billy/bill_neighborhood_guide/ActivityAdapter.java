@@ -29,22 +29,22 @@ public class ActivityAdapter extends ArrayAdapter<Activity> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-        View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_layout_view, parent, false);
+        View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_layout_view, parent, false);
 
-        TextView firstTextView = (TextView) rowItem.findViewById(R.id.address_textView);
-        TextView secondTextView = (TextView) rowItem.findViewById(R.id.area_description_text);
-        ImageView images = (ImageView) rowItem.findViewById(R.id.result_list_image);
+        TextView firstTextView = (TextView) rowItem.findViewById(R.id.title_name);
+        TextView secondTextView = (TextView)rowItem.findViewById(R.id.address);
+        ImageView images = (ImageView) rowItem.findViewById(R.id.event_image);
 
         Activity activity = activityData.get(position);
         firstTextView.setText(activity.getActivityName());
-        secondTextView.setText(activity.getActiviteLocation());
+        secondTextView.setText(activity.getActivityLocation());
 
 
 
         //use if/else statement to set images
 
         String activityName = activity.getActivityName();
-        if (activityName.equals("Excercising") ) {
+        if (activityName.equals("Exercising") ) {
             images.setImageResource(R.drawable.exercising2);
         }
 

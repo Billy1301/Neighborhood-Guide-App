@@ -29,15 +29,16 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurants> {
     public View getView(int position, View convertView, ViewGroup parent) {
 
 
-        View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.result_layout_view, parent, false);
+        View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.new_layout_view, parent, false);
 
-        TextView firstTextView = (TextView) rowItem.findViewById(R.id.address_textView);
-        TextView secondTextView = (TextView) rowItem.findViewById(R.id.area_description_text);
-        ImageView images = (ImageView) rowItem.findViewById(R.id.result_list_image);
+        TextView firstTextView = (TextView) rowItem.findViewById(R.id.title_name);
+        TextView secondTextView = (TextView)rowItem.findViewById(R.id.address);
+        ImageView images = (ImageView) rowItem.findViewById(R.id.event_image);
 
         Restaurants restaurants = data.get(position);
         firstTextView.setText(restaurants.getRestaurantName());
         secondTextView.setText(restaurants.getLocation());
+        images.setImageResource(R.drawable.android_arms);
 
 
 

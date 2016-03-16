@@ -17,30 +17,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/description_title"
+            android:text="Activity Name"
+            android:textSize="35sp"
+            android:gravity="center"
+            />
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:src="@drawable/background"
-                android:id="@+id/description_image"
-                />
-
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/hearticon"
-                android:layout_alignEnd="@+id/description_image"
-                android:layout_below="@+id/description_image"
-                />
-
-        </RelativeLayout>
-
-
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@drawable/exercising2"
+            android:id="@+id/description_image"
+            />
 
 
         <TextView
@@ -50,7 +41,6 @@
             android:text="address here"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
-
             />
 
         <TextView
@@ -59,11 +49,25 @@
             android:textSize="20dp"
             android:layout_marginTop="20dp"
             android:id="@+id/description_info"
-            android:text="Info here"/>
+            android:text="Info here \ncan i indent?
+            next para? \nwhat can i do?
+            testing testing.........."
+            />
 
     </LinearLayout>
 
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hearticon"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+
+        />
 
 
 </RelativeLayout>

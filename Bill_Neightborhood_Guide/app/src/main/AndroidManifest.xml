@@ -23,7 +23,9 @@
         <activity
             android:name="com.example.billy.bill_neighborhood_guide.description_layout"
             android:label="@string/title_activity_description_layout"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

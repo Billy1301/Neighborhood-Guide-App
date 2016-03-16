@@ -42,7 +42,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public CustomHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        DataListView dataListView = (DataListView) LayoutInflater.from(parent.getContext()).inflate(R.layout.result_layout_view, parent, false);
+        DataListView dataListView = (DataListView) LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_view, parent, false);
 
         return new CustomHolder(dataListView);
     }

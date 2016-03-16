@@ -17,17 +17,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ListView dataListView;
+//    RecyclerView recyclerView;
+//    ListView dataListView;
     Button searchButton;
     EditText userSearchInput;
-    ArrayList<String> categoryList;
-    ArrayAdapter<String> listAdapter;
+//    ArrayList<String> categoryList;
+//    ArrayAdapter<String> listAdapter;
     TextView activity;
     TextView restaurants;
     TextView shops;
-    RecycleViewAdapter customAdapter;
-
+   // RecycleViewAdapter customAdapter;
+    public final static String TITLE_KEY = "TitleName";
     public final static String LIST_KEY = "listKey";
 
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent resultListIntent = new Intent(MainActivity.this, list_results.class);
                 String title = restaurants.getText().toString();
-                resultListIntent.putExtra("TitleName", title);
+                resultListIntent.putExtra(TITLE_KEY, title);
                 startActivity(resultListIntent);
 
 
@@ -75,8 +75,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent resultListIntent = new Intent(MainActivity.this, list_results.class);
                 String title = activity.getText().toString();
-                resultListIntent.putExtra("TitleName", title);
+                resultListIntent.putExtra(TITLE_KEY, title);
                 startActivity(resultListIntent);
+
             }
         });
 
@@ -118,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void floatButton(){
-        FloatingActionButton fab = (FloatingActionButton) findViewById(com.example.billy.bill_neighborhood_guide.R.id.float_button);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.float_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,26 +129,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-/*   // not using any ListView for Category list atm
-
-    public void setCategoryList(){
-        categoryList = new ArrayList<>(); // this will be my list of Categories
-
-        categoryList.add("Restaurants");
-        categoryList.add("Events");
-        categoryList.add("Shops");
-        categoryList.add("num4");
-        categoryList.add("num5");
-        categoryList.add("num6");
-    }
-*/
 
 
 
     public void setView(){
-        // recyclerView = (RecyclerView) findViewById(R.id.main_recyclerview);  //set it off to display only a simple Listview
         userSearchInput = (EditText) findViewById(R.id.main_edit_text);
-        // dataListView = (ListView)findViewById(R.id.main_list_view);
         searchButton = (Button)findViewById(R.id.search_button);
         restaurants = (TextView)findViewById(R.id.restuarant_textview);
         activity = (TextView)findViewById(R.id.activity_textview);
@@ -155,21 +141,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * need to fix adapter to connect to right layout view.. it's currently set to wrong layout
-     */
-
- /*   public void setAdapater(){
-
-//        listAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, categoryList);
-//        dataListView.setAdapter(listAdapter);
-
-        customAdapter = new RecycleViewAdapter();
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setLayoutManager(new GridLayoutManager(this,1)); // the #1 is the grid look
-        recyclerView.setAdapter(customAdapter);
 
 
-    }*/
 }

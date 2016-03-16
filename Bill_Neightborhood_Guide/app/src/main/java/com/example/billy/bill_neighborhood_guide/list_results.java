@@ -1,7 +1,10 @@
 package com.example.billy.bill_neighborhood_guide;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -19,6 +22,9 @@ public class list_results extends AppCompatActivity {
     ArrayList<Activity> activityLists;
     ActivityAdapter activityListAdapter;
 
+    public final static String RESULT_TITLE = "result_title";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +38,32 @@ public class list_results extends AppCompatActivity {
         setActivityLists();
         setShopLists();
 
+        setOnItemClick();
         setAdapter();
 
 
-        /**
-         * need to set an intent to display the area name for the Title bar.. use toolbar.setTitle(); on the description layout.
-         *
-         */
+    }
+
+
+    /**
+     * need to setup onItemClick to display information of place
+     *
+     */
+
+    public void setOnItemClick(){
+        resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Intent resultListIntent = new Intent(list_results.this, description_layout.class);
+                //String descriptionTitleExtra = restaurantLists.get(position).getRestaurantName();
+                String descriptionTitleExtra = ((TextView)view.findViewById(R.id.title_name)).getText().toString(); // this is if we don't know where the name is from
+                resultListIntent.putExtra("result_title", descriptionTitleExtra);
+                startActivity(resultListIntent);
+                // need to fix the title extra
+
+            }
+        });
 
     }
 
@@ -46,8 +71,8 @@ public class list_results extends AppCompatActivity {
 
         Restaurants restaurantsOne = new Restaurants("Rockin Crawfish");
         Restaurants restaurantsTwo = new Restaurants("Portal");
-        restaurantsOne.setLocation("1234 Foot");
-        restaurantsTwo.setLocation("567 livermoore");
+        restaurantsOne.setLocation("123 International");
+        restaurantsTwo.setLocation("987 Foothill");
 
         restaurantLists = new ArrayList<>();
         restaurantLists.add(restaurantsOne);
@@ -59,16 +84,12 @@ public class list_results extends AppCompatActivity {
     public void setActivityLists(){
 
         Activity activityOne = new Activity("Exercising");
-        activityOne.setActiviteLocation("Lake Merritt");
-
         Activity activityTwo = new Activity("Parks");
-        activityTwo.setActiviteLocation("Lakeshore Park");
 
         activityLists = new ArrayList<>();
 
         activityLists.add(activityOne);
         activityLists.add(activityTwo);
-
 
     }
 
@@ -84,9 +105,8 @@ public class list_results extends AppCompatActivity {
 
         //recyclerView = (RecyclerView) findViewById(R.id.result.recyclerview);
 
-
-
     }
+
     public void setListTitle(){
         String titleExtra = getIntent().getStringExtra("TitleName");
         titleName.setText(titleExtra);

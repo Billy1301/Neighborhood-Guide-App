@@ -6,23 +6,37 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class description_layout extends AppCompatActivity {
 
-    TextView titleName;
+    TextView descriptionTitleName;
+    TextView addressText;
+    ImageView titleImage;
+    ArrayList<String> allListData;
 
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.example.billy.bill_neighborhood_guide.R.layout.activity_description_layout);
-        Toolbar toolbar = (Toolbar) findViewById(com.example.billy.bill_neighborhood_guide.R.id.toolbar);
-
+        setContentView(R.layout.activity_description_layout);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setView();
+        setTitle();
 
+
+        /**
+         *
+         * setup Arraylist of all result
+         *
+         */
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(com.example.billy.bill_neighborhood_guide.R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -34,6 +48,25 @@ public class description_layout extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
+
+    public void setView() {
+        descriptionTitleName = (TextView) findViewById(R.id.description_title);
+        titleImage = (ImageView) findViewById(R.id.description_image);
+        addressText = (TextView) findViewById(R.id.description_addressView);
+
+    }
+
+    public void setTitle() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String titleExtra = extras.getString("result_title");
+            descriptionTitleName.setText(titleExtra);
+
+
+        }
+    }
+
 
 }

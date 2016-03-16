@@ -5,7 +5,7 @@ package com.example.billy.bill_neighborhood_guide;
  */
 public class Activity {
     private String activityName;
-    private String activiteLocation;
+    private String activityLocation;
 
 
     public Activity(String activityName) {
@@ -20,11 +20,11 @@ public class Activity {
         this.activityName = activityName;
     }
 
-    public String getActiviteLocation() {
-        return activiteLocation;
+    public String getActivityLocation() {
+        return activityLocation;
     }
 
-    public void setActiviteLocation(String activiteLocation) {
-        this.activiteLocation = activiteLocation;
+    public void setActivityLocation(String activityLocation) {
+        this.activityLocation = activityLocation;
     }
 }

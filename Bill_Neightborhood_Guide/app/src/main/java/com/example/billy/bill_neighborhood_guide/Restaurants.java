@@ -9,6 +9,18 @@ public class Restaurants {
     public String ratings;
     private int phoneNumber;
 
+
+    public Restaurants(String restaurantName, String location){
+        this.restaurantName = restaurantName;
+        this.location = location;
+
+    }
+
+    public Restaurants(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
+
     public int getPhoneNumber() {
         return phoneNumber;
     }
@@ -16,11 +28,6 @@ public class Restaurants {
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
-    public Restaurants(String restaurantName) {
-        this.restaurantName = restaurantName;
-    }
-
 
     public String getRestaurantName() {
         return restaurantName;
