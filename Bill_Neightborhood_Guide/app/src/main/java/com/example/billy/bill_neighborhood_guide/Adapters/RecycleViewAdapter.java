@@ -1,8 +1,10 @@
-package com.example.billy.bill_neighborhood_guide;
+package com.example.billy.bill_neighborhood_guide.Adapters;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+
+import com.example.billy.bill_neighborhood_guide.R;
 
 import java.util.ArrayList;
 import java.util.List;

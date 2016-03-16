@@ -12,10 +12,20 @@
     tools:context="com.example.billy.bill_neighborhood_guide.description_layout"
     tools:showIn="@layout/activity_description_layout">
 
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="150dp"
+        android:src="@drawable/exercisestairs"
+        android:id="@+id/description_image"
+        android:gravity="center"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_below="@id/description_image">
 
         <TextView
             android:layout_width="match_parent"
@@ -26,12 +36,7 @@
             android:gravity="center"
             />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:src="@drawable/exercising2"
-            android:id="@+id/description_image"
-            />
+
 
 
         <TextView

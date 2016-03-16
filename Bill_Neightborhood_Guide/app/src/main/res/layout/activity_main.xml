@@ -10,11 +10,24 @@
     tools:context="com.example.billy.bill_neighborhood_guide.MainActivity">
 
 
+
+    <ImageView
+        android:id="@+id/main_image"
+        android:layout_width="fill_parent"
+        android:layout_height="150sp"
+        android:scaleType="fitStart"
+        android:src="@drawable/lakemerrittmain"
+        android:adjustViewBounds="true"
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:id="@+id/main_layout">
+        android:id="@+id/main_layout"
+        android:layout_below="@+id/main_image"
+        >
+
 
     <EditText
         android:layout_width="match_parent"
@@ -34,6 +47,9 @@
 
 
     </LinearLayout>
+
+
+
 
 
     <LinearLayout

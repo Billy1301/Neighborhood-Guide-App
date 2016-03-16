@@ -4,7 +4,12 @@
     <string name="title_activity_description_layout">description_layout</string>
     <string name="text_view1">Restaurants</string>
     <string name="text_view2">Activities</string>
-    <string name="text_view3">Shops</string>
+    <string name="Rating">stars here</string>
+    <string name="address_info">address here</string>
+    <string name="event_name">Event place name</string>
+
+
+
 
 
 </resources>

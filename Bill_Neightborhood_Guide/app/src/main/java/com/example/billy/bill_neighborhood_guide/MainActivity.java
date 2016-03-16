@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,16 +18,12 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-//    RecyclerView recyclerView;
-//    ListView dataListView;
     Button searchButton;
     EditText userSearchInput;
-//    ArrayList<String> categoryList;
-//    ArrayAdapter<String> listAdapter;
     TextView activity;
     TextView restaurants;
-    TextView shops;
-   // RecycleViewAdapter customAdapter;
+    ImageView mainImage;
+
     public final static String TITLE_KEY = "TitleName";
     public final static String LIST_KEY = "listKey";
 
@@ -40,10 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         setView();
-        // setCategoryList();
-        //setAdapater();
         floatButton();
-
         setOnItemClick();
         setSearchButton();
 
@@ -137,7 +131,9 @@ public class MainActivity extends AppCompatActivity {
         searchButton = (Button)findViewById(R.id.search_button);
         restaurants = (TextView)findViewById(R.id.restuarant_textview);
         activity = (TextView)findViewById(R.id.activity_textview);
-        shops = (TextView)findViewById(R.id.shop_textview);
+        mainImage = (ImageView)findViewById(R.id.main_image);
+
+
 
     }
 

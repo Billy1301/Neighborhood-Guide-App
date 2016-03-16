@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/title_name"
-        android:text="Event place name"
+        android:text="@string/event_name"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#040404"
@@ -29,17 +29,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/address"
-        android:text="2134 Oakland"
+        android:text="@string/address_info"
         android:layout_below="@+id/title_name"
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
-
         android:layout_toEndOf="@+id/event_image" />
 
 
     <TextView
         android:id="@+id/rating"
-        android:text="4 stars"
+        android:text="@string/Rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

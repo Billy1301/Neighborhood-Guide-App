@@ -1,9 +1,11 @@
-package com.example.billy.bill_neighborhood_guide;
+package com.example.billy.bill_neighborhood_guide.Adapters;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.billy.bill_neighborhood_guide.R;
 
 public class DataListView extends RelativeLayout {
 

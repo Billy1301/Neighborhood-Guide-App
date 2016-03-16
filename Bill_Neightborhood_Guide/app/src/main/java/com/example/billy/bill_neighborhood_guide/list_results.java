@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.billy.bill_neighborhood_guide.Adapters.ActivityAdapter;
+import com.example.billy.bill_neighborhood_guide.Adapters.RestaurantAdapter;
+
 import java.util.ArrayList;
 
 public class list_results extends AppCompatActivity {
@@ -56,11 +59,16 @@ public class list_results extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Intent resultListIntent = new Intent(list_results.this, description_layout.class);
+
+                    // to grab from restaurantLists on item click and name
                 //String descriptionTitleExtra = restaurantLists.get(position).getRestaurantName();
-                String descriptionTitleExtra = ((TextView)view.findViewById(R.id.title_name)).getText().toString(); // this is if we don't know where the name is from
+
+                // this is if we don't know where the name is from
+                String descriptionTitleExtra = ((TextView)view.findViewById(R.id.title_name)).getText().toString();
+
                 resultListIntent.putExtra("result_title", descriptionTitleExtra);
                 startActivity(resultListIntent);
-                // need to fix the title extra
+
 
             }
         });
@@ -126,11 +134,6 @@ public class list_results extends AppCompatActivity {
              resultListView.setAdapter(activityListAdapter);
          }
 
-    /*    customAdapter = new RecycleViewAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        //recyclerView.setLayoutManager(new GridLayoutManager(this,1)); // the #1 is the grid look
-
-        recyclerView.setAdapter(customAdapter);*/
 
     }
 }

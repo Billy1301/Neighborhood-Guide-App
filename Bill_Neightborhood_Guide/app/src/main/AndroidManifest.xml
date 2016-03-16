@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.billy.bill_neighborhood_guide.DataListView" />
+        <activity android:name=".Adapters.DataListView" />
         <activity android:name="com.example.billy.bill_neighborhood_guide.list_results" />
         <activity
             android:name="com.example.billy.bill_neighborhood_guide.description_layout"

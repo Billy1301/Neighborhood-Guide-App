@@ -1,4 +1,4 @@
-package com.example.billy.bill_neighborhood_guide;
+package com.example.billy.bill_neighborhood_guide.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.billy.bill_neighborhood_guide.Activity;
+import com.example.billy.bill_neighborhood_guide.R;
 
 import java.util.ArrayList;
 import java.util.List;
