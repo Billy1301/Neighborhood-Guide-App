@@ -1,12 +1,46 @@
 <resources>
     <string name="app_name">Lake Merritt Neighborhood Guide</string>
     <string name="action_settings">Settings</string>
+    <string name="search">Search</string>
+
+    <string name="search_hint">search_hint</string>
+
     <string name="title_activity_description_layout">description_layout</string>
-    <string name="text_view1">Restaurants</string>
-    <string name="text_view2">Activities</string>
-    <string name="Rating">stars here</string>
+
+    <string name="activities_string_name">Activities</string>
+    <string name="restaurant_string_name">Restaurants</string>
+
+    <string name="event_string_name">Event place name</string>
+
+    <string name="moderate_string_price">$$</string>
+    <string name="rating">4 stars</string>
+
+    <string name="fourStars_rating">4 stars</string>
+    <string name="threeStars_rating">3 stars</string>
+    <string name="fiveStars_rating">5 stars</string>
+
+
+    <string name="restaurant_Portal">Portal</string>
+    <string name="restaurant_JongGA">Jong Ga House</string>
+    <string name="restaurant_GrandLakeKitchen">Grand Lake Kitchen</string>
+    <string name="restaurant_RockinCrawfish">The Rockin Crawfish</string>
+    <string name="restaurant_HaddonHillCafe">Haddon Hill Cafe</string>
+    <string name="restaurant_ArizmendiBakery">Arizmendi Bakery</string>
+    <string name="restaurant_MichelBistro">Michel Bistro</string>
+    <string name="restaurant_TheAlley">The Alley</string>
+    <string name="restaurant_OffTheGrid">Off The Grid Food Trucks</string>
+
+
     <string name="address_info">address here</string>
-    <string name="event_name">Event place name</string>
+    <string name="portal_address_info">address here</string>
+    <string name="jongGA_address_info">address here</string>
+    <string name="grandLakeKitchen_address_info">address here</string>
+    <string name="rockinCrawfish_address_info">address here</string>
+    <string name="haddonHill_address_info">address here</string>
+    <string name="arizmendiBakery_address_info">address here</string>
+    <string name="michelBistro_address_info">address here</string>
+    <string name="theAlley_address_info">address here</string>
+    <string name="offTheGrid_address_info">address here</string>
 
 
 

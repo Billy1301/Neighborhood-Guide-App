@@ -1,20 +1,20 @@
 package com.example.billy.bill_neighborhood_guide;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView activity;
     TextView restaurants;
     ImageView mainImage;
+    LakeMerrittSQLiteOpenHelper merrittHelper;
 
     public final static String TITLE_KEY = "TitleName";
     public final static String LIST_KEY = "listKey";
@@ -39,10 +40,24 @@ public class MainActivity extends AppCompatActivity {
         setView();
         floatButton();
         setOnItemClick();
-        setSearchButton();
-
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.option_menu_main, menu);
+
+        SearchManager searchManager =
+                (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView =
+                (SearchView) menu.findItem(R.id.search).getActionView();
+        searchView.setSearchableInfo(
+                searchManager.getSearchableInfo(getComponentName()));
+
+        return true;
+    }
+
 
     /**
      * item click will pull up the Lists of selected category and display the name on the Title
@@ -81,31 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void setSearchButton(){
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String userText = userSearchInput.getText().toString();
-
-                if (userText.isEmpty()) {
-
-                    Snackbar.make(v, "Invalid search entry", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
-                } else {
-
-
-                    // set this to display search results
-                }
-
-
-
-            }
-        });
-    }
-
-
-
 
 
     /**
@@ -132,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
         restaurants = (TextView)findViewById(R.id.restuarant_textview);
         activity = (TextView)findViewById(R.id.activity_textview);
         mainImage = (ImageView)findViewById(R.id.main_image);
+
+
 
 
 

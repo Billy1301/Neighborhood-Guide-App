@@ -1,29 +1,28 @@
 package com.example.billy.bill_neighborhood_guide;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.billy.bill_neighborhood_guide.Adapters.ActivityAdapter;
-import com.example.billy.bill_neighborhood_guide.Adapters.RestaurantAdapter;
 
 import java.util.ArrayList;
 
 public class list_results extends AppCompatActivity {
 
-//    RecyclerView recyclerView;
-//    RecycleViewAdapter customAdapter;
-    TextView titleName;
-    ListView resultListView;
+    LakeMerrittSQLiteOpenHelper merrittHelper;
 
     ArrayList<Restaurants> restaurantLists;
-    RestaurantAdapter restaurantListAdapter;
     ArrayList<Activity> activityLists;
-    ActivityAdapter activityListAdapter;
 
     public final static String RESULT_TITLE = "result_title";
 
@@ -34,18 +33,46 @@ public class list_results extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_results);
 
-        setView();
-        setListTitle();
 
-        setRestaurantLists();
-        setActivityLists();
-        setShopLists();
+        merrittHelper = LakeMerrittSQLiteOpenHelper.getInstance(this);
 
-        setOnItemClick();
-        setAdapter();
+        merrittHelper.listInsert(1, "Restaurants", "Portal", "1611 2nd Ave", "510-663-7678", "4 stars", "$$", "Breakfast");
+
+
+
+        Cursor cursor = LakeMerrittSQLiteOpenHelper.getInstance(list_results.this).getLakeMerrittLists();
+
+        CursorAdapter cursorAdapter = new CursorAdapter(list_results.this, cursor, 0) {
+            @Override
+            public View newView(Context context, Cursor cursor, ViewGroup parent) {
+                return LayoutInflater.from(context).inflate(R.layout.new_layout_view, parent, false);
+            }
+
+            @Override
+            public void bindView(View view, Context context, Cursor cursor) {
+                TextView nameTextView = (TextView) view.findViewById(R.id.title_name);
+                TextView addressTextView = (TextView) view.findViewById(R.id.address);
+                TextView ratingTextView = (TextView) view.findViewById(R.id.rating);
+                ImageView resultListImage = (ImageView) view.findViewById(R.id.event_image);
+
+                nameTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.LAKE_MERRITT_PLACE_NAME)));
+                addressTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.LAKE_MERRITT_ADDRESS)));
+                ratingTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.LAKE_MERRITT_RATINGS)));
+
+                if (nameTextView.equals("Portal")) {
+                    resultListImage.setImageResource(R.drawable.portalicon);
+                }
+
+            }
+        };
+
+        ListView listView = (ListView) findViewById(R.id.list_result_view);
+        listView.setAdapter(cursorAdapter);
 
 
     }
+
+
 
 
     /**
@@ -53,7 +80,7 @@ public class list_results extends AppCompatActivity {
      *
      */
 
-    public void setOnItemClick(){
+   /* public void setOnItemClick(){
         resultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -75,65 +102,10 @@ public class list_results extends AppCompatActivity {
 
     }
 
-    public void setRestaurantLists(){
-
-        Restaurants restaurantsOne = new Restaurants("Rockin Crawfish");
-        Restaurants restaurantsTwo = new Restaurants("Portal");
-        restaurantsOne.setLocation("123 International");
-        restaurantsTwo.setLocation("987 Foothill");
-
-        restaurantLists = new ArrayList<>();
-        restaurantLists.add(restaurantsOne);
-        restaurantLists.add(restaurantsTwo);
-
-
-    }
-
-    public void setActivityLists(){
-
-        Activity activityOne = new Activity("Exercising");
-        Activity activityTwo = new Activity("Parks");
-
-        activityLists = new ArrayList<>();
-
-        activityLists.add(activityOne);
-        activityLists.add(activityTwo);
-
-    }
-
-    public void setShopLists(){
-
-
-    }
-
-
-    public void setView(){
-        titleName = (TextView)findViewById(R.id.result_textView);
-        resultListView = (ListView)findViewById(R.id.list_result_view);
-
-        //recyclerView = (RecyclerView) findViewById(R.id.result.recyclerview);
-
-    }
-
     public void setListTitle(){
         String titleExtra = getIntent().getStringExtra("TitleName");
         titleName.setText(titleExtra);
 
-    }
+    }*/
 
-
-    public void setAdapter() {
-
-        restaurantListAdapter = new RestaurantAdapter(this, restaurantLists);
-        activityListAdapter = new ActivityAdapter(this, activityLists);
-
-        if (titleName.getText().equals("Restaurants")) {
-            resultListView.setAdapter(restaurantListAdapter);
-        }
-         if(titleName.getText().equals("Activities")) {
-             resultListView.setAdapter(activityListAdapter);
-         }
-
-
-    }
 }

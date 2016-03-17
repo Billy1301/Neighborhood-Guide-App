@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/title_name"
-        android:text="@string/event_name"
+        android:text="@string/event_string_name"
         android:textSize="18sp"
         android:textStyle="bold"
         android:textColor="#040404"
@@ -38,7 +38,7 @@
 
     <TextView
         android:id="@+id/rating"
-        android:text="@string/Rating"
+        android:text="@string/rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

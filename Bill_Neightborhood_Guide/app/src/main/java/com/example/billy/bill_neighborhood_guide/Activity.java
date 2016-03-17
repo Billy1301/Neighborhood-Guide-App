@@ -5,8 +5,34 @@ package com.example.billy.bill_neighborhood_guide;
  */
 public class Activity {
     private String activityName;
-    private String activityLocation;
+    private String activityAddress;
+    private String activityType;
+    private String activityPhoneNumber;
 
+
+    public Activity(String activityName, String activityAddress, String activityType, String activityPhoneNumber) {
+        this.activityName = activityName;
+        this.activityAddress = activityAddress;
+        this.activityType = activityType;
+        this.activityPhoneNumber = activityPhoneNumber;
+    }
+
+    public String getActivityType() {
+        return activityType;
+    }
+
+    public void setActivityType(String activityType) {
+        this.activityType = activityType;
+    }
+
+
+    public String getActivityPhoneNumber() {
+        return activityPhoneNumber;
+    }
+
+    public void setActivityPhoneNumber(String activityPhoneNumber) {
+        this.activityPhoneNumber = activityPhoneNumber;
+    }
 
     public Activity(String activityName) {
         this.activityName = activityName;
@@ -20,11 +46,11 @@ public class Activity {
         this.activityName = activityName;
     }
 
-    public String getActivityLocation() {
-        return activityLocation;
+    public String getActivityAddress() {
+        return activityAddress;
     }
 
-    public void setActivityLocation(String activityLocation) {
-        this.activityLocation = activityLocation;
+    public void setActivityAddress(String activityAddress) {
+        this.activityAddress = activityAddress;
     }
 }

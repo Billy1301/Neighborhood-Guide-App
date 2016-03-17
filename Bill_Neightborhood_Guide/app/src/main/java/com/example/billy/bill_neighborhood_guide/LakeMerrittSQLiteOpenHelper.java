@@ -1,5 +1,6 @@
 package com.example.billy.bill_neighborhood_guide;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,9 +14,9 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 9;
     public static final String DATABASE_NAME = "LAKE_MERRITT_DB";
-    public static final String LAKE_MERRITT_LIST_TABLE_NAME = "LAKE_MERRITT_LIST";
+    public static final String LAKE_MERRITT_TABLE_NAME = "LAKE_MERRITT_LIST";
     public static final String LAKE_MERRITT_PLACE_NAME = "PLACE NAME";
-    public static final String LAKE_MERRITT_LOCATION = "LOCATION";
+    public static final String LAKE_MERRITT_ADDRESS = "ADDRESS";
     public static final String LAKE_MERRITT_PHONE = "PHONE NUMBER";
     public static final String LAKE_MERRITT_RATINGS = "RATINGS";
     public static final String LAKE_MERRITT_PRICE = "PRICE";
@@ -25,15 +26,15 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_ID = "_id";
     public static final String COL_CATEGORY_LIST = "CATEGORY LIST";
 
-    public static final String[] LAKE_MERRITT_COLUMNS = {COL_ID,COL_CATEGORY_LIST, LAKE_MERRITT_PLACE_NAME, LAKE_MERRITT_LOCATION,
+    public static final String[] LAKE_MERRITT_COLUMNS = {COL_ID,COL_CATEGORY_LIST, LAKE_MERRITT_PLACE_NAME, LAKE_MERRITT_ADDRESS,
                                     LAKE_MERRITT_PHONE, LAKE_MERRITT_RATINGS, LAKE_MERRITT_PRICE, LAKE_MERRITT_TYPE};
 
     private static final String CREATE_LAKE_MERRITT_LIST_TABLE =
-            "CREATE TABLE " + LAKE_MERRITT_LIST_TABLE_NAME +
+            "CREATE TABLE " + LAKE_MERRITT_TABLE_NAME +
                     "(" +
                     COL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COL_CATEGORY_LIST + " TEXT, " + LAKE_MERRITT_PLACE_NAME + " TEXT, "
-                    + LAKE_MERRITT_LOCATION + " TEXT, " + LAKE_MERRITT_PHONE + " TEXT, " + LAKE_MERRITT_RATINGS
+                    + LAKE_MERRITT_ADDRESS + " TEXT, " + LAKE_MERRITT_PHONE + " TEXT, " + LAKE_MERRITT_RATINGS
                     + " TEXT, " + LAKE_MERRITT_PRICE + " TEXT, " + LAKE_MERRITT_TYPE + " TEXT )";
 
 
@@ -57,15 +58,35 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + LAKE_MERRITT_LIST_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + LAKE_MERRITT_TABLE_NAME);
         this.onCreate(db);
     }
 
-    public Cursor getIconList(){
+
+    public void listInsert(int id, String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type){
+
+        SQLiteDatabase db = getWritableDatabase();
+
+        // create a new content value to store values
+        ContentValues values = new ContentValues();
+        values.put(COL_ID, id);
+        values.put(COL_CATEGORY_LIST, categoryList);
+        values.put(LAKE_MERRITT_PLACE_NAME, placeName);
+        values.put(LAKE_MERRITT_ADDRESS, address);
+        values.put(LAKE_MERRITT_PHONE, phoneNumber);
+        values.put(LAKE_MERRITT_RATINGS, ratings);
+        values.put(LAKE_MERRITT_PRICE, price);
+        values.put(LAKE_MERRITT_TYPE, type);
+
+
+        db.insert(LAKE_MERRITT_TABLE_NAME, null, values);
+    }
+
+    public Cursor getLakeMerrittLists(){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(LAKE_MERRITT_LIST_TABLE_NAME, // a. table
+        Cursor cursor = db.query(LAKE_MERRITT_TABLE_NAME, // a. table
                 LAKE_MERRITT_COLUMNS, // b. column names
                 null, // c. selections
                 null, // d. selections args
@@ -75,4 +96,26 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 null); // h. limit
         return cursor;
     }
+
+    public String getLakeMerrittById(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(LAKE_MERRITT_TABLE_NAME,
+                        new String[]{COL_CATEGORY_LIST },
+                        COL_ID+ " = ?",
+                        new String[]{String.valueOf(id)},
+                        null,
+                        null,
+                        null,
+                        null);
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_CATEGORY_LIST));
+        } else {
+            return "No Description Found";
+        }
+
+    }
+
+
+
 }
