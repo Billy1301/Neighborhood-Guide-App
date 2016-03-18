@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.billy.bill_neighborhood_guide.list_results"
+    tools:context=".ListResultsActivity"
     >
 
 
@@ -19,14 +19,14 @@
         android:textSize="30dp"
         android:gravity="center"
         android:background="@drawable/background"
-        android:id="@+id/result_textView"
+        android:id="@+id/result_title_name"
        />
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:id="@+id/list_result_view"
-        android:layout_below="@+id/result_textView"
+        android:layout_below="@+id/result_title_name"
         android:layout_marginTop="20dp">
 
 

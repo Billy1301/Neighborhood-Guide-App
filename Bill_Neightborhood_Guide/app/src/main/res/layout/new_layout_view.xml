@@ -14,7 +14,7 @@
         android:src="@drawable/android_arms"/>
 
     <TextView
-        android:id="@+id/title_name"
+        android:id="@+id/place_title_name"
         android:text="@string/event_string_name"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/address"
         android:text="@string/address_info"
-        android:layout_below="@+id/title_name"
+        android:layout_below="@id/place_title_name"
         android:layout_marginTop="5dp"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/event_image" />
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignTop="@id/title_name"
+        android:layout_alignTop="@id/place_title_name"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:textStyle="bold"

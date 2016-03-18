@@ -12,6 +12,8 @@
 
     <string name="event_string_name">Event place name</string>
 
+    <string name="restaurant_type">type here</string>
+
     <string name="moderate_string_price">$$</string>
     <string name="rating">4 stars</string>
 
@@ -30,19 +32,19 @@
     <string name="restaurant_TheAlley">The Alley</string>
     <string name="restaurant_OffTheGrid">Off The Grid Food Trucks</string>
 
+    <string name="description_phoneNumber">510-123-4567</string>
+
 
     <string name="address_info">address here</string>
-    <string name="portal_address_info">address here</string>
-    <string name="jongGA_address_info">address here</string>
-    <string name="grandLakeKitchen_address_info">address here</string>
-    <string name="rockinCrawfish_address_info">address here</string>
-    <string name="haddonHill_address_info">address here</string>
-    <string name="arizmendiBakery_address_info">address here</string>
-    <string name="michelBistro_address_info">address here</string>
-    <string name="theAlley_address_info">address here</string>
-    <string name="offTheGrid_address_info">address here</string>
-
-
+    <string name="portal_info">info here</string>
+    <string name="jongGA_info">info here</string>
+    <string name="grandLakeKitchen_info">address here</string>
+    <string name="rockinCrawfish_info">address here</string>
+    <string name="haddonHill_info">address here</string>
+    <string name="arizmendiBakery_info">address here</string>
+    <string name="michelBistro_info">address here</string>
+    <string name="theAlley_info">address here</string>
+    <string name="offTheGrid_info">address here</string>
 
 
 

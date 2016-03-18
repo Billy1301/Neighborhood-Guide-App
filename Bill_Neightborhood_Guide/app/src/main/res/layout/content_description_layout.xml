@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.billy.bill_neighborhood_guide.description_layout"
+    tools:context=".Description_layout"
     tools:showIn="@layout/activity_description_layout">
 
 
@@ -49,12 +49,28 @@
             />
 
         <TextView
+            android:id="@+id/restaurant_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="@string/restaurant_type"
+            />
+
+        <TextView
+            android:id="@+id/description_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:text="@string/description_phoneNumber"
+            />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:layout_marginTop="20dp"
             android:id="@+id/description_info"
-            android:text="Info here \ncan i indent?
+            android:text="Info here can i indent? how far does the screen goes?
             next para? \nwhat can i do?
             testing testing.........."
             />

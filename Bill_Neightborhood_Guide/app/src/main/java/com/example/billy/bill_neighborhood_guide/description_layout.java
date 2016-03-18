@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class description_layout extends AppCompatActivity {
+public class Description_layout extends AppCompatActivity {
 
     TextView descriptionTitleName;
     TextView addressText;
@@ -34,7 +34,7 @@ public class description_layout extends AppCompatActivity {
 
         /**
          *
-         * setup Arraylist of all result
+         * favorite button
          *
          */
 
