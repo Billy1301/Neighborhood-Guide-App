@@ -22,12 +22,12 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    FloatingActionButton favoriteButton;
-    TextView activity;
-    TextView restaurants;
-    Cursor cursor;
-    LakeMerrittSQLiteOpenHelper lakeMerrittHelper;
-    Intent resultListIntent;
+    private TextView activity;
+    private TextView restaurants;
+    private Cursor cursor;
+    private LakeMerrittSQLiteOpenHelper lakeMerrittHelper;
+    private Intent resultListIntent;
+    private TextView favorites;
 
     public final static String TITLE_KEY = "TitleName";
 
@@ -40,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setView();
-        setFavoriteButton();
 
         lakeMerrittHelper = LakeMerrittSQLiteOpenHelper.getInstance(this);
         setLakeMerrittDatabase();
 
         setOnItemClick();
+        setFavoriteButton();
+
 
 
     }
@@ -65,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
         activity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String ActivitiesTitle = activity.getText().toString();
-                resultListIntent.putExtra(TITLE_KEY, ActivitiesTitle);
+                String activitiesTitle = activity.getText().toString();
+                resultListIntent.putExtra(TITLE_KEY, activitiesTitle);
                 startActivity(resultListIntent);
 
             }
@@ -75,11 +76,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void setView(){
-        favoriteButton = (FloatingActionButton) findViewById(R.id.fab);
         restaurants = (TextView)findViewById(R.id.restaurantsTextView);
         activity = (TextView)findViewById(R.id.activitiesTextView);
         resultListIntent = new Intent(MainActivity.this, ResultListActivity.class);
-
+        favorites = (TextView)findViewById(R.id.favoriteTextView);
 
     }
 
@@ -89,15 +89,16 @@ public class MainActivity extends AppCompatActivity {
      */
 
     public void setFavoriteButton(){
-
-        favoriteButton.setOnClickListener(new View.OnClickListener() {
+        favorites.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                String favoriteTitle = favorites.getText().toString();
+                resultListIntent.putExtra(TITLE_KEY, favoriteTitle);
+                startActivity(resultListIntent);
 
-                Snackbar.make(view, "Create your favorite list!!!!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
             }
         });
+
     }
 
 
@@ -133,24 +134,23 @@ public class MainActivity extends AppCompatActivity {
 */
 
 
-
-            lakeMerrittHelper.listInsert(1, "Restaurants", "Portal", "1611 2nd Ave", "510-663-7678", "4 stars", "$$", "American (NEW), Breakfast & Brunch, Burgers", getString(R.string.portal_info));
-            lakeMerrittHelper.listInsert(2, "Restaurants", "Jong Ga House", "372 Grand Ave", "510-444-7678", "5 stars", "$$", "Korean", getString(R.string.jongGA_info));
-            lakeMerrittHelper.listInsert(3, "Restaurants", "Grand Lake Kitchen", "576 Grand Ave", "510-922-9582", "3 stars", "$$", "American (NEW), Breakfast, Deli", getString(R.string.grandLakeKitchen_info));
-            lakeMerrittHelper.listInsert(4, "Restaurants", "The Rockin' Crawfish", "211 Foothill Blvd", "510-251-1657", "4 stars", "$$", "Cajun Seafood", getString(R.string.rockinCrawfish_info));
-            lakeMerrittHelper.listInsert(5, "Restaurants", "Haddon Hill Cafe", "504 Wesly Ave", null, "5 stars", "$", "Cafe", getString(R.string.haddonHill_info));
-            lakeMerrittHelper.listInsert(6, "Restaurants", "Arizmendi Bakery", "3265 Lakeshore Ave", "510-268-8849", "5 stars", "$$", "Bakeries, Pizza", getString(R.string.arizmendiBakery_info));
-            lakeMerrittHelper.listInsert(7, "Restaurants", "Michel Bistro", "3343 Lakeshore Ave", "510-836-8737", "4 stars", "$$", "French, Bar", getString(R.string.michelBistro_info));
-            lakeMerrittHelper.listInsert(8, "Restaurants", "The Alley", "3325 Grand Ave", "510-444-8505", "4 stars", "$$", "Steakhouse", getString(R.string.theAlley_info));
-            lakeMerrittHelper.listInsert(9, "Restaurants", "Off The Grid Food Truck", "1000 Oak St", null, "4 stars", "$$", "Food Trucks", getString(R.string.offTheGrid_info));
-            lakeMerrittHelper.listInsert(10, "Activities", "The Gardens", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.theGardenInfo));
-            lakeMerrittHelper.listInsert(11, "Activities", "Japanese Garden", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.japaneseGardenInfo));
-            lakeMerrittHelper.listInsert(12, "Activities", "Palm Garden", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.palmGardenInfo));
-            lakeMerrittHelper.listInsert(13, "Activities", "The Mediterranean Garden", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.mediterraneanGardenInfo));
-            lakeMerrittHelper.listInsert(14, "Activities", "Water sports", "666 Bellevue Ave", null, null, null, "Sports", getString(R.string.waterSportsInfo));
-            lakeMerrittHelper.listInsert(15, "Activities", "FairyLand", "699 Bellevue Ave", null, null, null, "Theme Park", getString(R.string.fairyLandInfo));
-            lakeMerrittHelper.listInsert(16, "Activities", "Exercise", "Lake Merritt", null, null, null, "Sports", getString(R.string.exerciseInfo));
-            lakeMerrittHelper.listInsert(17, "Activities", "Flea Market", "Grand Ave & Lake Park Ave", null, null, null, "Shops", getString(R.string.fleaMarketInfo));
+            lakeMerrittHelper.listInsert( "Restaurants", "Portal", "1611 2nd Ave", "510-663-7678", "4 stars", "$$", "American (NEW), Breakfast & Brunch, Burgers", getString(R.string.portal_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "Jong Ga House", "372 Grand Ave", "510-444-7678", "5 stars", "$$", "Korean", getString(R.string.jongGA_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "Grand Lake Kitchen", "576 Grand Ave", "510-922-9582", "3 stars", "$$$", "American (NEW), Breakfast, Deli", getString(R.string.grandLakeKitchen_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "The Rockin' Crawfish", "211 Foothill Blvd", "510-251-1657", "4 stars", "$$", "Cajun Seafood", getString(R.string.rockinCrawfish_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "Haddon Hill Cafe", "504 Wesly Ave", null, "5 stars", "$", "Cafe", getString(R.string.haddonHill_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "Arizmendi Bakery", "3265 Lakeshore Ave", "510-268-8849", "5 stars", "$$", "Bakeries, Pizza", getString(R.string.arizmendiBakery_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "Michel Bistro", "3343 Lakeshore Ave", "510-836-8737", "4 stars", "$$", "French, Bar", getString(R.string.michelBistro_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "The Alley", "3325 Grand Ave", "510-444-8505", "4 stars", "$$", "Steakhouse", getString(R.string.theAlley_info));
+            lakeMerrittHelper.listInsert( "Restaurants", "Off The Grid Food Truck", "1000 Oak St", null, "4 stars", "$$", "Food Trucks", getString(R.string.offTheGrid_info));
+            lakeMerrittHelper.listInsert( "Activities", "The Gardens", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.theGardenInfo));
+            lakeMerrittHelper.listInsert( "Activities", "Japanese Garden", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.japaneseGardenInfo));
+            lakeMerrittHelper.listInsert( "Activities", "Palm Garden", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.palmGardenInfo));
+            lakeMerrittHelper.listInsert( "Activities", "The Mediterranean Garden", "666 Bellevue Ave", null, null, null, "Parks", getString(R.string.mediterraneanGardenInfo));
+            lakeMerrittHelper.listInsert( "Activities", "Water sports", "666 Bellevue Ave", null, null, null, "Sports", getString(R.string.waterSportsInfo));
+            lakeMerrittHelper.listInsert( "Activities", "FairyLand", "699 Bellevue Ave", null, null, null, "Parks", getString(R.string.fairyLandInfo));
+            lakeMerrittHelper.listInsert( "Activities", "Exercise", "Lake Merritt", null, null, null, "Sports", getString(R.string.exerciseInfo));
+            lakeMerrittHelper.listInsert( "Activities", "Flea Market", "Grand Ave & Lake Park Ave", null, null, null, "Shops", getString(R.string.fleaMarketInfo));
 
 
         }

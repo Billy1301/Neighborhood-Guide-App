@@ -73,11 +73,11 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public void listInsert(int id, String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description){
+    public void listInsert(String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description){
         SQLiteDatabase db = getWritableDatabase();
         // create a new content value to store values
         ContentValues values = new ContentValues();
-        values.put(COL_ID, id);
+        //values.put(COL_ID, id);
         values.put(COL_LAKE_MERRITT_RATINGS, ratings);
         values.put(COL_LAKE_MERRITT_ADDRESS, address);
         values.put(COL_LAKE_MERRITT_TYPE, type);
@@ -277,8 +277,8 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    // this is for testing only... use if work, delete if not
-    public Cursor testingGetFoodTypeList(){
+    // this is for testing filter only... use if work, delete if not
+    public Cursor testingGetKoreanList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
@@ -288,6 +288,52 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null,
+                null);
+        return cursor;
+
+    }
+
+    public Cursor testingGetSportsList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_TYPE+ " = ?",
+                new String[]{"Sports"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+
+    public Cursor getParksList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_TYPE+ " = ?",
+                new String[]{"Parks"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+
+    // this is for testing filter only... use if work, delete if not
+    public Cursor testingSortByPriceRange(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_PRICE+ " LIKE '%$'",
+                null,  //new String[]{"% $ %"},
+                null,
+                null,
+                COL_LAKE_MERRITT_PRICE + " ASC",
                 null);
         return cursor;
 

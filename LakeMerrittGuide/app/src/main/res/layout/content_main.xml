@@ -27,6 +27,7 @@
 
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/main_frame_layout"
         android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
@@ -51,6 +52,20 @@
             android:layout_marginTop="10dp"
             android:textSize="40sp"
             android:text="Activities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black" />
+
+
+        <TextView
+            android:id="@+id/favoriteTextView"
+            android:layout_marginTop="10dp"
+            android:textSize="40sp"
+            android:text="Favorites"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
