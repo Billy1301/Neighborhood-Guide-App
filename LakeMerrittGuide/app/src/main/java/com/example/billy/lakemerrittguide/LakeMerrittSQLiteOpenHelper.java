@@ -278,13 +278,13 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     // this is for testing only... use if work, delete if not
-    public Cursor testingGetBrunchTypeList(){
+    public Cursor testingGetFoodTypeList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 LAKE_MERRITT_COLUMNS,
                 COL_LAKE_MERRITT_TYPE+ " = ?",
-                new String[]{"Brunch"},
+                new String[]{"Korean"},
                 null,
                 null,
                 null,

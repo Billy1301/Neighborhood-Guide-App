@@ -19,7 +19,10 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class ResultListActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ResultListActivity extends AppCompatActivity  {
 
     TextView resultTitleName;
     ListView lakeMerrittListView;
@@ -27,7 +30,9 @@ public class ResultListActivity extends AppCompatActivity {
     Cursor cursor;
     LakeMerrittSQLiteOpenHelper lakeMerrittHelper;
     ArrayAdapter<CharSequence> filterSpinnerAdapter;
+    ArrayAdapter<String> filterDynamicAdapter;
     Spinner filterSpinner;
+    List<String> filters;
 
     public static final String ID_KEY_SENDING = "_id";
 
@@ -46,9 +51,20 @@ public class ResultListActivity extends AppCompatActivity {
         lakeMerrittListView.setAdapter(cursorAdapter);
         handleIntent(getIntent());
         setItemClicker();
+
+
+        /**
+         * these are for spinner
+         */
+        filters = new ArrayList<String>();
+        filters.add("Type");
+        filters.add("Price");
+        filters.add("Ratings");
         setFilterSpinner();
 
         //setFilterClicker();
+
+
 
 
     }
@@ -58,13 +74,35 @@ public class ResultListActivity extends AppCompatActivity {
      * might have to use Intent to start new activity to display filter result
      */
 
+    public void setFilterClicker(){
+
+        filterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetFoodTypeList();
+                cursorAdapter.changeCursor(cursor);
+                cursorAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+    }
 
 
     public void setFilterSpinner(){
-        filterSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.filter, android.R.layout.simple_spinner_item);
-        filterSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterDynamicAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, filters);
+        filterDynamicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterSpinner.setAdapter(filterDynamicAdapter);
 
-        filterSpinner.setAdapter(filterSpinnerAdapter);
+
+       /* filterSpinnerAdapter = ArrayAdapter.createFromResource(this, R.array.filter, android.R.layout.simple_spinner_item);
+        filterSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        filterSpinner.setAdapter(filterSpinnerAdapter);*/
 
     }
 
