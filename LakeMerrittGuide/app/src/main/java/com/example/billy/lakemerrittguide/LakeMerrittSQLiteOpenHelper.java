@@ -96,14 +96,14 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
 
 
-        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
-                LAKE_MERRITT_COLUMNS,
-                COL_CATEGORY_LIST + " LIKE" + "'%" + query + "%' OR " + COL_LAKE_MERRITT_PLACE_NAME +
+        Cursor cursor = db.query(true, COL_LAKE_MERRITT_TABLE_NAME,
+                new String[]{COL_LAKE_MERRITT_PRICE, COL_LAKE_MERRITT_PLACE_NAME, COL_LAKE_MERRITT_TYPE},
+                COL_LAKE_MERRITT_PRICE + " LIKE" + "'%" + query + "%' OR " + COL_LAKE_MERRITT_PLACE_NAME +
                         " LIKE" + "'%" + query + "%' OR " + COL_LAKE_MERRITT_TYPE + " LIKE" + "'%" + query + "%'",
                 new String[]{"%" + query + "%"},
-                COL_LAKE_MERRITT_TYPE,
                 null,
-                COL_LAKE_MERRITT_PLACE_NAME,
+                null,
+                null,
                 null);
         return cursor;
     }
@@ -201,6 +201,26 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         }
 
     }
+    public String getPhoneById(int _id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                new String[]{COL_LAKE_MERRITT_PHONE},
+                COL_ID + " = ?",
+                new String[]{String.valueOf(_id)},
+                null,
+                null,
+                null,
+                null);
+        if(cursor.moveToFirst()){
+            return cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_PHONE));
+        } else {
+            return "Nothing found";
+        }
+
+    }
+
 
     public String getTypeById(int _id){
 
@@ -222,6 +242,26 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
+    public int getDescriptionById(int _id){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                new String[]{COL_LAKE_MERRITT_DESCRIPTION},
+                COL_ID + " = ?",
+                new String[]{String.valueOf(_id)},
+                null,
+                null,
+                null,
+                null);
+        if(cursor.moveToFirst()){
+            return cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_DESCRIPTION));
+        } else {
+            return -22;
+        }
+
+    }
+
     public Cursor getRestaurantList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -229,6 +269,22 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 LAKE_MERRITT_COLUMNS,
                 COL_CATEGORY_LIST+ " = ?",
                 new String[]{"Restaurants"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+
+    // this is for testing only... use if work, delete if not
+    public Cursor testingGetBrunchTypeList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_TYPE+ " = ?",
+                new String[]{"Brunch"},
                 null,
                 null,
                 null,
@@ -254,6 +310,20 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 null);
         return cursor;
 
+    }
+
+    public Cursor getItem(int id){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME, // a. table
+                LAKE_MERRITT_COLUMNS, // b. column names
+                COL_ID + " = ?", // c. selections
+                new String[]{String.valueOf(id)}, // d. selections args
+                null, // e. group by
+                null, // f. having
+                null, // g. order by
+                null); // h. limit
+
+        return cursor;
     }
 
 }

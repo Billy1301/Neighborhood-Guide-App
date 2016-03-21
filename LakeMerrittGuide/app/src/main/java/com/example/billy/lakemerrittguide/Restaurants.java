@@ -10,6 +10,7 @@ public class Restaurants {
     private String restaurantPhoneNumber;
     private String restaurantType;
     private String restaurantPrice;
+    private String restaurantInfo;
 
 
 
@@ -19,13 +20,14 @@ public class Restaurants {
 
     }
 
-    public Restaurants(String restaurantName, String restaurantAddress, String restaurantRatings, String restaurantPhoneNumber, String restaurantType, String restaurantPrice) {
+    public Restaurants(String restaurantName, String restaurantAddress, String restaurantRatings, String restaurantPhoneNumber, String restaurantType, String restaurantPrice, String restaurantInfo) {
         this.restaurantName = restaurantName;
         this.restaurantAddress = restaurantAddress;
         this.restaurantRatings = restaurantRatings;
         this.restaurantPhoneNumber = restaurantPhoneNumber;
         this.restaurantType = restaurantType;
         this.restaurantPrice = restaurantPrice;
+        this.restaurantInfo = restaurantInfo;
     }
 
     public String getRestaurantPhoneNumber() {
@@ -81,7 +83,13 @@ public class Restaurants {
         this.restaurantRatings = restaurantRatings;
     }
 
+    public String getRestaurantInfo() {
+        return restaurantInfo;
+    }
 
+    public void setRestaurantInfo(String restaurantInfo) {
+        this.restaurantInfo = restaurantInfo;
+    }
 }
 
 
