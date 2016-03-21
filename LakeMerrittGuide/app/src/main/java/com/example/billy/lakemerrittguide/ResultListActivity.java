@@ -90,8 +90,14 @@ public class ResultListActivity extends AppCompatActivity  {
                         if(resultTitleName.getText().equals("Restaurants")){
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
 
-                        } else {
+                        }
+                        else if (resultTitleName.getText().equals("Activities")) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getActivitiesList();
+                        }
+                        else if (resultTitleName.getText().equals("Favorites")) {
+                            //make this to favorite list
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getLakeMerrittLists();
+
                         }
 
                         cursorAdapter.changeCursor(cursor);
@@ -103,8 +109,15 @@ public class ResultListActivity extends AppCompatActivity  {
 
                         if(resultTitleName.getText().equals("Restaurants")) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetKoreanList();
-                        }else {
+                        } else if(resultTitleName.getText().equals("Activites")) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetSportsList();
+                        } else if (resultTitleName.getText().equals("Favorites")) {
+
+                            /**
+                             * set this to favorites only
+                             */
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getLakeMerrittLists();
+
                         }
 
                         cursorAdapter.changeCursor(cursor);
@@ -276,6 +289,8 @@ public class ResultListActivity extends AppCompatActivity  {
                 return android.R.drawable.ic_menu_upload;
             case "The Rockin Crawfish":
                 return android.R.drawable.ic_media_play;
+            case "Haddon Hill Cafe":
+                return R.drawable.haddonhillcafelogo;
             case "The Gardens":
                 return R.drawable.android_arms;
             default:
@@ -293,8 +308,9 @@ public class ResultListActivity extends AppCompatActivity  {
                 cursor = LakeMerrittSQLiteOpenHelper.getInstance(this).getActivitiesList();
                 break;
             case "Favorites":
-                //cursor = LakeMerrittSQLiteOpenHelper.getInstance(this).
+                cursor = LakeMerrittSQLiteOpenHelper.getInstance(this).getLakeMerrittLists();
                 break;
+
             // this is to get whole list
             // cursor = LakeMerrittSQLiteOpenHelper.getInstance(this).getLakeMerrittLists();
 

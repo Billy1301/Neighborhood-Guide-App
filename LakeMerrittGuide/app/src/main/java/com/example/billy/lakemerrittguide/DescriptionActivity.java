@@ -113,6 +113,8 @@ public class DescriptionActivity extends AppCompatActivity {
                 return android.R.drawable.ic_menu_upload;
             case "The Rockin Crawfish":
                 return android.R.drawable.ic_media_play;
+            case "Haddon Hill Cafe":
+                return R.drawable.haddonhillcafelogo;
             case "The Gardens":
                 return R.drawable.android_arms;
             default:
@@ -131,6 +133,8 @@ public class DescriptionActivity extends AppCompatActivity {
                 return android.R.drawable.ic_menu_upload;
             case "The Rockin Crawfish":
                 return android.R.drawable.ic_media_play;
+            case "Haddon Hill Cafe":
+                return R.drawable.haddonhilldrinks1;
             case "The Gardens":
                 return R.drawable.android_arms;
             default:
