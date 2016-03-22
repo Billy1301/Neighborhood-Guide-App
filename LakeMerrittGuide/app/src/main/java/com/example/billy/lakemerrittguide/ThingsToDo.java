@@ -11,6 +11,7 @@ public class ThingsToDo {
     private String placeType;
     private String placePrice;
     private String placeInfo;
+    private String favoriteStatus;
     private int mainImageLogo;
     private int infoImageOne;
     private int infoImageTwo;
@@ -27,7 +28,7 @@ public class ThingsToDo {
     }
 
 
-    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo, int mainImageLogo, int infoImageOne, int infoImageTwo) {
+    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo, int mainImageLogo, int infoImageOne, int infoImageTwo, String favoriteStatus) {
         this.placeName = placeName;
         this.placeAddress = placeAddress;
         this.placeRatings = placeRatings;
@@ -38,8 +39,16 @@ public class ThingsToDo {
         this.mainImageLogo = mainImageLogo;
         this.infoImageOne = infoImageOne;
         this.infoImageTwo = infoImageTwo;
+        this.favoriteStatus = favoriteStatus;
     }
 
+    public String getFavoriteStatus() {
+        return favoriteStatus;
+    }
+
+    public void setFavoriteStatus(String favoriteStatus) {
+        this.favoriteStatus = favoriteStatus;
+    }
 
     public String getPlaceName() {
         return placeName;

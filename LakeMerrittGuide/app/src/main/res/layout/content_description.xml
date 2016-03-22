@@ -33,6 +33,7 @@
 
     </FrameLayout>
 
+
     <LinearLayout
         android:layout_marginTop="15sp"
         android:layout_below="@+id/descriptionFrameLayout"
@@ -41,13 +42,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+
         <TextView
             android:id="@+id/descriptionPlaceTextView"
             android:text="place name"
-            android:textSize="15sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
 
         <TextView
             android:layout_width="match_parent"
@@ -67,6 +70,14 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/favoriteButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/descriptionInfoDetailText"
+        android:layout_alignParentEnd="true"
+        android:background="@drawable/emptyfav"
+        />
 
     <TextView
         android:layout_below="@+id/descriptionLinearlayout"

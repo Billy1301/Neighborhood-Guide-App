@@ -26,13 +26,15 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_LAKE_MERRITT_MAININFO_LOGOIMAGE = "INFOLOGOIMAGE";
     public static final String COL_LAKE_MERRITT_INFOIMAGEONE = "IMAGEONE";
     public static final String COL_LAKE_MERRITT_INFOIMAGETWO = "IMAGETWO";
+    public static final String COL_LAKE_MERRITT_FAVORITE_STATUS = "FAVORITESTATUS";
 
 
     public static final String COL_ID = "_id";
     public static final String COL_CATEGORY_LIST = "CATEGORY_LIST";
 
     public static final String[] COL_LAKE_MERRITT_COLUMNS = {COL_ID,COL_CATEGORY_LIST, COL_LAKE_MERRITT_PLACE_NAME, COL_LAKE_MERRITT_ADDRESS,
-            COL_LAKE_MERRITT_PHONE, COL_LAKE_MERRITT_RATINGS, COL_LAKE_MERRITT_PRICE, COL_LAKE_MERRITT_TYPE, COL_LAKE_MERRITT_DESCRIPTION, COL_LAKE_MERRITT_MAININFO_LOGOIMAGE, COL_LAKE_MERRITT_INFOIMAGEONE, COL_LAKE_MERRITT_INFOIMAGETWO};
+            COL_LAKE_MERRITT_PHONE, COL_LAKE_MERRITT_RATINGS, COL_LAKE_MERRITT_PRICE, COL_LAKE_MERRITT_TYPE, COL_LAKE_MERRITT_DESCRIPTION,
+            COL_LAKE_MERRITT_MAININFO_LOGOIMAGE, COL_LAKE_MERRITT_INFOIMAGEONE, COL_LAKE_MERRITT_INFOIMAGETWO, COL_LAKE_MERRITT_FAVORITE_STATUS};
 
     private static final String CREATE_LAKE_MERRITT_LIST_TABLE =
             "CREATE TABLE " + COL_LAKE_MERRITT_TABLE_NAME +
@@ -48,7 +50,8 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                     COL_LAKE_MERRITT_DESCRIPTION + " TEXT, " +
                     COL_LAKE_MERRITT_MAININFO_LOGOIMAGE + " INTEGER, " +
                     COL_LAKE_MERRITT_INFOIMAGEONE + " INTEGER, " +
-                    COL_LAKE_MERRITT_INFOIMAGETWO + " INTEGER)";
+                    COL_LAKE_MERRITT_INFOIMAGETWO + " INTEGER, " +
+                    COL_LAKE_MERRITT_FAVORITE_STATUS + " INTEGER)";
 
 
     public static final String DROP_LAKE_MERRITT_TABLE = "DROP TABLE IF EXISTS " + COL_LAKE_MERRITT_TABLE_NAME;
@@ -79,7 +82,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public void listInsert(String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description, int infoMainLogo, int infoImageOne, int infoImageTwo){
+    public void listInsert(String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description, int infoMainLogo, int infoImageOne, int infoImageTwo, String favoriteStatus){
         SQLiteDatabase db = getWritableDatabase();
         // create a new content value to store values
         ContentValues values = new ContentValues();
@@ -95,6 +98,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_LAKE_MERRITT_MAININFO_LOGOIMAGE, infoMainLogo);
         values.put(COL_LAKE_MERRITT_INFOIMAGEONE, infoImageOne);
         values.put(COL_LAKE_MERRITT_INFOIMAGETWO, infoImageTwo);
+        values.put(COL_LAKE_MERRITT_FAVORITE_STATUS, favoriteStatus);
 
 
         db.insert(COL_LAKE_MERRITT_TABLE_NAME, null, values);
@@ -183,9 +187,34 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         int mainLogo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_MAININFO_LOGOIMAGE));
         int imageOne = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGEONE));
         int imageTwo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGETWO));
+        String favorite = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_FAVORITE_STATUS));
 
-        return new ThingsToDo(name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, imageTwo);
 
+        return new ThingsToDo(name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, imageTwo, favorite);
+
+    }
+
+    public void updateFavoriteStatus(int _id, String favoriteStatus){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COL_LAKE_MERRITT_FAVORITE_STATUS, favoriteStatus);
+
+        db.update(COL_LAKE_MERRITT_TABLE_NAME, values, "_id=" + _id, null);
+        db.close();
+    }
+
+    public Cursor getFavoriteLists(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_FAVORITE_STATUS + " = ?",
+                new String[]{MainActivity.FAVORITE_ICON},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
     }
 
     public Cursor getRestaurantList(){
@@ -194,7 +223,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
                 COL_CATEGORY_LIST+ " = ?",
-                new String[]{"Restaurants"},
+                new String[]{MainActivity.RESTAURANTS},
                 null,
                 null,
                 null,
@@ -218,6 +247,22 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    public Cursor getBreakfastList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_TYPE+ " = ?",
+                new String[]{"% Breakfast %"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+
 
     public Cursor testingGetSportsList(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -275,7 +320,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
                 COL_CATEGORY_LIST+ " = ?",
-                new String[]{"Activities"},
+                new String[]{MainActivity.ACTIVITIES},
                 null,
                 null,
                 null,

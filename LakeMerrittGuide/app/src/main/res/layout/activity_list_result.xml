@@ -34,17 +34,46 @@
 
     </FrameLayout>
 
+<LinearLayout
+    android:layout_below="@+id/resultFrameLayout"
+    android:orientation="horizontal"
+    android:id="@+id/spinners_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <Spinner
-        android:layout_below="@id/resultFrameLayout"
-        android:id="@+id/static_spinner"
-        android:layout_width="wrap_content"
+        android:id="@+id/type_static_spinner"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:spinnerMode="dialog"
+        android:layout_weight="1"
 
         />
+    <Spinner
+        android:id="@+id/price_static_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:spinnerMode="dialog"
+        android:layout_weight="1"
+
+        />
+
+    <Spinner
+        android:id="@+id/rating_static_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:spinnerMode="dialog"
+        android:layout_weight="1"
+
+        />
+</LinearLayout>
+
 
 
     <ListView
@@ -52,7 +81,7 @@
         android:id="@+id/resultListView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/static_spinner">
+        android:layout_below="@+id/spinners_layout">
 
     </ListView>
 
