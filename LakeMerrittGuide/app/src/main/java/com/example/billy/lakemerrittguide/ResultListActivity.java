@@ -31,7 +31,7 @@ public class ResultListActivity extends AppCompatActivity  {
     private CursorAdapter cursorAdapter;
     private Cursor cursor;
     LakeMerrittSQLiteOpenHelper lakeMerrittHelper;
-    private ArrayAdapter<String> filterDynamicAdapter;
+    private ArrayAdapter<String> typeFilterAdapter, priceFilterAdapter, ratingFilterAdapter;
     private Spinner typeFilterSpinner, priceFilterSpinner, ratingFilterSpinner;
     private List<String> typeFilters, priceFilters, ratingFilters;
     private ImageView titleImageLogo;
@@ -86,11 +86,7 @@ public class ResultListActivity extends AppCompatActivity  {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getActivitiesList();
                         } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getLakeMerrittLists();
-                        }
-                        /**
-                         * make below cursor to show favorites
-                         */
-                        else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
+                        } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
 
@@ -102,21 +98,19 @@ public class ResultListActivity extends AppCompatActivity  {
 
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetKoreanList();
-                        } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetSportsList();
-                        } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getLakeMerrittLists();
-                        } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
 
+                        } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getSportsList();
+                        } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getActivitiesList();
+                        } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             /**
                              * set this to favorites only
                              */
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
-
                         cursorAdapter.changeCursor(cursor);
                         cursorAdapter.notifyDataSetChanged();
-
                     }
 
                     if (position == 2) {
@@ -124,29 +118,28 @@ public class ResultListActivity extends AppCompatActivity  {
 
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getBreakfastList();
-                        } else {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getParksList();
-                        }
 
+                        } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getParksList();
+
+                        } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
+                        cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
+                        }
                         cursorAdapter.changeCursor(cursor);
                         cursorAdapter.notifyDataSetChanged();
-
                     }
+
                     if (position == 3) {
                         Log.d("Result", "itemclicked " + position);
 
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getBreakfastList();
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getThreeStarsList();
+
                         } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetSportsList();
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getShopList();
                         } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getLakeMerrittLists();
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
-
-
-                        /**
-                         * set this to favorites only
-                         */
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
 
@@ -163,7 +156,6 @@ public class ResultListActivity extends AppCompatActivity  {
                 }
             });
 
-
     }
 
     /**
@@ -174,8 +166,8 @@ public class ResultListActivity extends AppCompatActivity  {
         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
             typeFilters.add("Show All");
             typeFilters.add("Korean");
-            typeFilters.add("Breakfast");
-            typeFilters.add("Drinks");
+            typeFilters.add("Brunch");
+            typeFilters.add("Dinner");
 
             priceFilters.add("Show All Price");
             priceFilters.add("$");
@@ -194,8 +186,7 @@ public class ResultListActivity extends AppCompatActivity  {
             typeFilters.add("Parks");
             typeFilters.add("Exercise");
 
-            priceFilters.add("Show All");
-            ratingFilters.add("Show All");
+
 
 
 
@@ -204,8 +195,7 @@ public class ResultListActivity extends AppCompatActivity  {
             typeFilters.add(MainActivity.ACTIVITIES);
             typeFilters.add(MainActivity.RESTAURANTS);
 
-            priceFilters.add("Show All");
-            ratingFilters.add("Show All");
+
 
 
         }
@@ -217,12 +207,17 @@ public class ResultListActivity extends AppCompatActivity  {
      */
 
     public void setSpinner(){
-        filterDynamicAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typeFilters);
-        filterDynamicAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, priceFilters);
-        filterDynamicAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ratingFilters);
+        typeFilterAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, typeFilters);
+        priceFilterAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, priceFilters);
+        ratingFilterAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ratingFilters);
 
-        filterDynamicAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        typeFilterSpinner.setAdapter(filterDynamicAdapter);
+        typeFilterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        priceFilterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ratingFilterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        typeFilterSpinner.setAdapter(typeFilterAdapter);
+        priceFilterSpinner.setAdapter(priceFilterAdapter);
+        ratingFilterSpinner.setAdapter(ratingFilterAdapter);
 
 
     }

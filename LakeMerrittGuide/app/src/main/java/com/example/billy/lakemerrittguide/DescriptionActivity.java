@@ -68,7 +68,7 @@ public class DescriptionActivity extends AppCompatActivity {
     private void setFavoriteButtonImage(){
         if(thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.NO_FAVORITE_ICON)){
             favoriteButton.setBackgroundResource(R.drawable.emptyfav);
-        } else{
+        } else if (thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.FAVORITE_ICON)){
             favoriteButton.setBackgroundResource(R.drawable.filledfav);
         }
     }
@@ -82,12 +82,12 @@ public class DescriptionActivity extends AppCompatActivity {
 
                 switch (thingsToDoClassClickedItem.getFavoriteStatus()) {
                     case MainActivity.NO_FAVORITE_ICON:
-                        favoriteButton.setBackgroundResource(R.drawable.emptyfav);
+                        favoriteButton.setBackgroundResource(R.drawable.filledfav);
                         helper.updateFavoriteStatus(selectedId, MainActivity.FAVORITE_ICON);
                         thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.FAVORITE_ICON);
                         break;
                     case MainActivity.FAVORITE_ICON:
-                        favoriteButton.setBackgroundResource(R.drawable.filledfav);
+                        favoriteButton.setBackgroundResource(R.drawable.emptyfav);
                         helper.updateFavoriteStatus(selectedId, MainActivity.NO_FAVORITE_ICON);
                         thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.NO_FAVORITE_ICON);
                         break;

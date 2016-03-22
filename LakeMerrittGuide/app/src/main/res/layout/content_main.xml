@@ -88,6 +88,10 @@
             android:layout_height="2dp"
             android:background="@android:color/black" />
 
+        <FrameLayout
+            android:id="@+id/main_secondFrame_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent">
         <ImageView
             android:layout_marginTop="5dp"
             android:id="@+id/main_logo2"
@@ -95,6 +99,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/lakemerrittlogo"
             />
+        </FrameLayout>
 
     </LinearLayout>
 

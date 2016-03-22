@@ -76,7 +76,7 @@
         android:layout_height="50dp"
         android:layout_above="@+id/descriptionInfoDetailText"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/emptyfav"
+        android:background="@drawable/hearticon"
         />
 
     <TextView

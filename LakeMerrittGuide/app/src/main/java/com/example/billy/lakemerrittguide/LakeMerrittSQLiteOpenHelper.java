@@ -116,12 +116,13 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_PLACE_NAME + " LIKE ? OR " + COL_LAKE_MERRITT_TYPE + " LIKE ?",
-                new String[]{"%" + query + "%", "%" + query + "%"},
+                COL_LAKE_MERRITT_PLACE_NAME + " LIKE ? OR " + COL_LAKE_MERRITT_TYPE + " LIKE ? OR " + COL_LAKE_MERRITT_RATINGS + " Like ?",
+                new String[]{"%" + query + "%", "%" + query + "%", "%" + query + "%"},
                 null,
                 null,
                 null,
                 null);
+
         return cursor;
     }
 
@@ -248,13 +249,17 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * it's
+     * @return
+     */
     public Cursor getBreakfastList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_TYPE+ " = ?",
-                new String[]{"% Breakfast %"},
+                COL_LAKE_MERRITT_TYPE + " LIKE ?",
+                new String[]{"%Breakfast%"},
                 null,
                 null,
                 null,
@@ -264,13 +269,56 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor testingGetSportsList(){
+    public Cursor getSportsList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
                 COL_LAKE_MERRITT_TYPE+ " = ?",
                 new String[]{"Sports"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+
+    public Cursor getThreeStarsList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_RATINGS + " = ?",
+                new String[]{"3 stars"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+    public Cursor getFourStarsList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_RATINGS + " = ?",
+                new String[]{"4 stars"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+    public Cursor getFiveStarsList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_RATINGS + " = ?",
+                new String[]{"5 stars"},
                 null,
                 null,
                 null,
@@ -291,24 +339,21 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 null,
                 null);
         return cursor;
-
     }
-
-    // this is for testing filter only... use if work, delete if not
-    public Cursor testingSortByPriceRange(){
+    public Cursor getShopList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_PRICE+ " LIKE '%$'",
-                null,  //new String[]{"% $ %"},
+                COL_LAKE_MERRITT_TYPE+ " = ?",
+                new String[]{"Shops"},
                 null,
                 null,
-                COL_LAKE_MERRITT_PRICE + " ASC",
+                null,
                 null);
         return cursor;
-
     }
+
 
     /**
      *
