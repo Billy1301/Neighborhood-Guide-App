@@ -10,6 +10,7 @@ import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,17 +26,16 @@ import java.util.List;
 
 public class ResultListActivity extends AppCompatActivity  {
 
-    TextView resultTitleName;
-    ListView lakeMerrittListView;
-    CursorAdapter cursorAdapter;
-    Cursor cursor;
+    private TextView resultTitleName;
+    private ListView lakeMerrittListView;
+    private CursorAdapter cursorAdapter;
+    private Cursor cursor;
     LakeMerrittSQLiteOpenHelper lakeMerrittHelper;
     ArrayAdapter<CharSequence> filterSpinnerAdapter;
-    ArrayAdapter<String> filterDynamicAdapter;
-    Spinner filterSpinner;
-    List<String> filters;
-    //SpinnerItemClicker listener;
-
+    private ArrayAdapter<String> filterDynamicAdapter;
+    private Spinner filterSpinner;
+    private List<String> filters;
+    private ImageView titleImageLogo;
 
     public static final String ID_KEY_SENDING = "_id";
 
@@ -47,28 +47,20 @@ public class ResultListActivity extends AppCompatActivity  {
 
         setView();
 
-        setListTitle();
+        setTitleAndLogos();
         setCursor();
         setCursorAdapter();
-                //Log.d("Result", " before adapter");
-        lakeMerrittListView.setAdapter(cursorAdapter);
         handleIntent(getIntent());
+        lakeMerrittListView.setAdapter(cursorAdapter);
         setItemClicker();
 
 
         /**
-         * these are for spinner
+         * these are for filter spinner
          */
         filters = new ArrayList<String>();
         setSpinnerName();
-
-
-
         setSpinner();
-
-
-        //listener = new SpinnerItemClicker();
-
         setFilterClicker();
 
     }
@@ -109,7 +101,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
                         if(resultTitleName.getText().equals("Restaurants")) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetKoreanList();
-                        } else if(resultTitleName.getText().equals("Activites")) {
+                        } else if(resultTitleName.getText().equals("Activities")) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetSportsList();
                         } else if (resultTitleName.getText().equals("Favorites")) {
 
@@ -151,7 +143,9 @@ public class ResultListActivity extends AppCompatActivity  {
 
     }
 
-
+    /**
+     * this setup the dialog text for the spinner
+     */
     public void setSpinnerName(){
 
         if (resultTitleName.getText().equals("Restaurants")) {
@@ -168,6 +162,11 @@ public class ResultListActivity extends AppCompatActivity  {
         }
 
     }
+
+
+    /**
+     * this connects the spinner to the ArrayList
+     */
 
     public void setSpinner(){
         filterDynamicAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, filters);
@@ -201,6 +200,10 @@ public class ResultListActivity extends AppCompatActivity  {
 
     }
 
+    /**
+     * this set the cursorAdapter to work with my custom layout
+     */
+
     public void setCursorAdapter(){
         cursorAdapter = new CursorAdapter(this, cursor, 0) {
             @Override
@@ -220,7 +223,7 @@ public class ResultListActivity extends AppCompatActivity  {
                 ratingTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_RATINGS)));
 
                 // this set image according to Names
-                resultListImage.setImageResource(getDrawableValue(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_PLACE_NAME))));
+                resultListImage.setImageResource(setPlaceImageLogo(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_PLACE_NAME))));
 
 
             }
@@ -228,16 +231,26 @@ public class ResultListActivity extends AppCompatActivity  {
 
     }
 
+
+    /**
+     * setting all the views
+     */
+
     public void setView(){
         resultTitleName = (TextView)findViewById(R.id.resultTitleView);
         lakeMerrittListView = (ListView) findViewById(R.id.resultListView);
         lakeMerrittHelper = LakeMerrittSQLiteOpenHelper.getInstance(this);
         filterSpinner = (Spinner) findViewById(R.id.static_spinner);
+        titleImageLogo = (ImageView)findViewById(R.id.resultImageIcon);
 
 
     }
 
 
+    /**
+     * this is for singleton
+     * @param intent
+     */
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -247,21 +260,24 @@ public class ResultListActivity extends AppCompatActivity  {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-
             cursor = lakeMerrittHelper.searchLakeMerrittList(query);
             cursorAdapter.changeCursor(cursor);
             cursorAdapter.notifyDataSetChanged();
+            filterSpinner.setEnabled(false);
+            titleImageLogo.setImageResource(R.drawable.lakemerrittapplogo);
+
         }
     }
 
 
     /**
-     * this is for the search function
+     * this is for the search function.. **currently not working correctly.. need to fix
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
 
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
@@ -273,26 +289,42 @@ public class ResultListActivity extends AppCompatActivity  {
         return true;
     }
 
-    public void setListTitle(){
+    public void setTitleAndLogos(){
         String titleExtra = getIntent().getStringExtra("TitleName");
         resultTitleName.setText(titleExtra);
 
+        if(resultTitleName.getText().equals("Restaurants")){
+            titleImageLogo.setImageResource(R.drawable.restaurantbacktitlelogo);
+        }
+        if(resultTitleName.getText().equals("Activities")){
+            titleImageLogo.setImageResource(R.drawable.whats_happening_logo);
+        }
+        if (resultTitleName.getText().equals("Favorites")){
+            filterSpinner.setEnabled(false);
+            titleImageLogo.setImageResource(R.drawable.hearticon);
+        }
+
+
+
     }
 
-    private int getDrawableValue(String icon){
-        switch(icon){
+    private int setPlaceImageLogo(String logoImage){
+        switch(logoImage){
             case "Portal":
                 return R.drawable.portalicon;
             case "Jong Ga House":
-                return android.R.drawable.ic_menu_add;
+                return R.drawable.jonggalogo;
             case "Grand Lake Kitchen":
-                return android.R.drawable.ic_menu_upload;
-            case "The Rockin Crawfish":
-                return android.R.drawable.ic_media_play;
+                return R.drawable.restaurantbacktitlelogo;
+            case "Japanese Garden":
+                return R.drawable.japanesegarden1;
             case "Haddon Hill Cafe":
                 return R.drawable.haddonhillcafelogo;
             case "The Gardens":
-                return R.drawable.android_arms;
+                return R.drawable.thegardenslogo2;
+            case "Water Sports":
+                return R.drawable.watersailboat;
+
             default:
                 return 0;
         }

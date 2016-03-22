@@ -19,15 +19,16 @@
 
 
     <FrameLayout
+        android:layout_marginTop="20dp"
         android:id="@+id/descriptionFrameLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/descriptionImageLogo"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:src="@drawable/portalicon"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/android_arms"
             />
 
     </FrameLayout>
@@ -77,34 +78,30 @@
         android:hint="about the placeeeee"
         />
 
+<LinearLayout
+    android:layout_below="@id/descriptionInfoDetailText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
-    <FrameLayout
-        android:layout_below="@+id/descriptionInfoDetailText"
-        android:id="@+id/descriptionSecondFrame"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
         <ImageView
+            android:layout_marginBottom="20dp"
+            android:id="@+id/frameTwoImageTwo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/android_arms"
+            android:layout_weight="1"
+            />
+
+        <ImageView
+            android:layout_marginTop="20dp"
             android:id="@+id/frameTwoImageOne"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/restaurantbacktitlelogo"/>
-
-        <ImageView
-            android:id="@+id/frameTwoImageTwo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/portalicon"
-            android:layout_gravity="left|center_vertical" />
-
-
-        <ImageView
-            android:id="@+id/frameTwoImageThree"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/android_arms"
-            android:layout_gravity="bottom|right" />
-    </FrameLayout>
+            android:src="@drawable/restaurantbacktitlelogo"
+            android:layout_weight="1"/>
+</LinearLayout>
 
 
 </RelativeLayout>
