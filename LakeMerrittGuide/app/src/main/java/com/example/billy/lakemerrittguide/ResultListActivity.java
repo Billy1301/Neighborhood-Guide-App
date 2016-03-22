@@ -7,7 +7,6 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,6 +22,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ResultListActivity extends AppCompatActivity  {
 
@@ -35,6 +36,7 @@ public class ResultListActivity extends AppCompatActivity  {
     private Spinner typeFilterSpinner, priceFilterSpinner, ratingFilterSpinner;
     private List<String> typeFilters, priceFilters, ratingFilters;
     private ImageView titleImageLogo;
+    Intent intent;
 
     public static final String ID_KEY_SENDING = "_id";
 
@@ -46,7 +48,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
         setView();
 
-        setTitleAndLogos();
+        setTitleAndLogosAndSpinner();
         setCursor();
         setCursorAdapter();
         handleIntent(getIntent());
@@ -55,7 +57,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
 
         /**
-         * these are for filter spinner
+         * these are for the filter spinners
          */
         typeFilters = new ArrayList<String>();
         priceFilters = new ArrayList<String>();
@@ -64,11 +66,14 @@ public class ResultListActivity extends AppCompatActivity  {
         setSpinner();
         setFilterClicker();
 
+
+
     }
 
 
     /**
-     * filter by types
+     * This setup the Spinner Item Select to filter listing to the pre-set choices
+     *
      */
 
     public void setFilterClicker(){
@@ -76,10 +81,8 @@ public class ResultListActivity extends AppCompatActivity  {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                    // Log.d("Result", "itemclicked ");
 
                     if (position == 0) {
-                        //Log.d("Result", "itemclicked " + position);
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
                         } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
@@ -89,7 +92,6 @@ public class ResultListActivity extends AppCompatActivity  {
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
-
                         cursorAdapter.changeCursor(cursor);
                         cursorAdapter.notifyDataSetChanged();
                     }
@@ -97,16 +99,13 @@ public class ResultListActivity extends AppCompatActivity  {
                     if (position == 1) {
 
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).testingGetKoreanList();
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getKoreanList();
 
                         } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getSportsList();
                         } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getActivitiesList();
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
-                            /**
-                             * set this to favorites only
-                             */
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
                         cursorAdapter.changeCursor(cursor);
@@ -114,7 +113,6 @@ public class ResultListActivity extends AppCompatActivity  {
                     }
 
                     if (position == 2) {
-                        Log.d("Result", "itemclicked " + position);
 
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getBreakfastList();
@@ -130,10 +128,9 @@ public class ResultListActivity extends AppCompatActivity  {
                     }
 
                     if (position == 3) {
-                        Log.d("Result", "itemclicked " + position);
 
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
-                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getThreeStarsList();
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getSteakhouseList();
 
                         } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getShopList();
@@ -142,11 +139,10 @@ public class ResultListActivity extends AppCompatActivity  {
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
-
                         cursorAdapter.changeCursor(cursor);
                         cursorAdapter.notifyDataSetChanged();
+                    }
 
-                        }
 
                 }
 
@@ -156,10 +152,104 @@ public class ResultListActivity extends AppCompatActivity  {
                 }
             });
 
+
+            priceFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (position == 0) {
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                    if (position == 1) {
+
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).get$PriceList();
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                    if (position == 2) {
+
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).get$$PriceList();
+
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                    if (position == 3) {
+
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).get$$$PriceList();
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+
+            ratingFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    if (position == 0) {
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                    if (position == 1) {
+
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getThreeStarsList();
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                    if (position == 2) {
+
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFourStarsList();
+
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                    if (position == 3) {
+
+                        if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                            cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFiveStarsList();
+                        }
+                        cursorAdapter.changeCursor(cursor);
+                        cursorAdapter.notifyDataSetChanged();
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
     }
 
+
     /**
-     * this setup the dialog text for the spinner
+     * this setup the dialog names for the Spinners
      */
     public void setSpinnerName() {
 
@@ -167,7 +257,7 @@ public class ResultListActivity extends AppCompatActivity  {
             typeFilters.add("Show All");
             typeFilters.add("Korean");
             typeFilters.add("Brunch");
-            typeFilters.add("Dinner");
+            typeFilters.add("Steakhouse");
 
             priceFilters.add("Show All Price");
             priceFilters.add("$");
@@ -184,10 +274,10 @@ public class ResultListActivity extends AppCompatActivity  {
             typeFilters.add("Show All");
             typeFilters.add("Sports");
             typeFilters.add("Parks");
-            typeFilters.add("Exercise");
+            typeFilters.add("Shops");
 
-
-
+            priceFilters.add("Show All");
+            ratingFilters.add("Show All");
 
 
         } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
@@ -195,7 +285,8 @@ public class ResultListActivity extends AppCompatActivity  {
             typeFilters.add(MainActivity.ACTIVITIES);
             typeFilters.add(MainActivity.RESTAURANTS);
 
-
+            priceFilters.add("Show All");
+            ratingFilters.add("Show All");
 
 
         }
@@ -219,31 +310,37 @@ public class ResultListActivity extends AppCompatActivity  {
         priceFilterSpinner.setAdapter(priceFilterAdapter);
         ratingFilterSpinner.setAdapter(ratingFilterAdapter);
 
-
     }
 
 
 
     /**
-     * use  spinner for filter option.. a nice way to sort stuff...
+     *clicking on any item will send you to the detail activity
+     * setup a delay to start to show the each click will lights up
      */
 
     public void setItemClicker(){
         lakeMerrittListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(ResultListActivity.this, DescriptionActivity.class);
                 Cursor selectedItem = (Cursor) parent.getItemAtPosition(position);
                 int databaseID = selectedItem.getInt(selectedItem.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_ID));
                 intent.putExtra(ID_KEY_SENDING, databaseID);
-                startActivity(intent);
+
+                new Timer().schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        // this code will be executed after some delay
+                        startActivity(intent);
+                    }
+                }, 800);
             }
         });
 
     }
 
     /**
-     * this set the cursorAdapter to work with my custom layout
+     * Set the cursorAdapter to work with my custom layout
      */
 
     public void setCursorAdapter(){
@@ -259,10 +356,12 @@ public class ResultListActivity extends AppCompatActivity  {
                 TextView addressTextView = (TextView) view.findViewById(R.id.address);
                 TextView ratingTextView = (TextView) view.findViewById(R.id.rating);
                 ImageView resultListImage = (ImageView) view.findViewById(R.id.list_event_image);
+                TextView priceTextView = (TextView)view.findViewById(R.id.price_customView);
 
                 nameTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_PLACE_NAME)));
                 addressTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_ADDRESS)));
                 ratingTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_RATINGS)));
+                priceTextView.setText(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_PRICE)));
 
                 // this set image according to Names
                 resultListImage.setImageResource(setPlaceImageLogo(cursor.getString(cursor.getColumnIndex(LakeMerrittSQLiteOpenHelper.COL_LAKE_MERRITT_PLACE_NAME))));
@@ -275,7 +374,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
 
     /**
-     * setting all the views
+     * Setting all the views
      */
 
     public void setView(){
@@ -287,6 +386,9 @@ public class ResultListActivity extends AppCompatActivity  {
         ratingFilterSpinner = (Spinner) findViewById(R.id.rating_static_spinner);
 
         titleImageLogo = (ImageView)findViewById(R.id.resultImageIcon);
+
+        intent = new Intent(ResultListActivity.this, DescriptionActivity.class);
+
 
 
     }
@@ -316,7 +418,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
 
     /**
-     * this is for the search function. search by places name and types
+     * this is for the search function. search by place name, types and ratings
      */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -333,7 +435,11 @@ public class ResultListActivity extends AppCompatActivity  {
         return true;
     }
 
-    public void setTitleAndLogos(){
+
+    /**
+     * Set Title Names and Spinner to off for the one that doesn't need it
+     */
+    public void setTitleAndLogosAndSpinner(){
         String titleExtra = getIntent().getStringExtra("TitleName");
         resultTitleName.setText(titleExtra);
 
@@ -359,6 +465,12 @@ public class ResultListActivity extends AppCompatActivity  {
 
 
     }
+
+    /**
+     * TO SET IMAGES ACCORDING TO THE NAME FOR THE LIST RESULTS
+     * @param logoImage
+     * @return
+     */
 
     private int setPlaceImageLogo(String logoImage){
         switch(logoImage){
@@ -414,9 +526,6 @@ public class ResultListActivity extends AppCompatActivity  {
                 cursor = LakeMerrittSQLiteOpenHelper.getInstance(this).getLakeMerrittLists();
                 break;
             case MainActivity.FAVORITES:
-                /**
-                 * need to fix to show favorites only
-                 */
                 cursor = LakeMerrittSQLiteOpenHelper.getInstance(this).getFavoriteLists();
                 break;
 

@@ -56,26 +56,24 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setView();
-
         lakeMerrittHelper = LakeMerrittSQLiteOpenHelper.getInstance(this);
         setLakeMerrittDatabase();
-
         setOnItemClick();
         setFavoriteButton();
 
-
-
     }
+
+    /**
+     * Set Click Listener for the Text
+     */
     public void setOnItemClick(){
 
         restaurants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String restaurantTitle = restaurants.getText().toString();
                 resultListIntent.putExtra(TITLE_KEY, restaurantTitle);
                 startActivity(resultListIntent);
-
             }
         });
 
@@ -85,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 String activitiesTitle = activity.getText().toString();
                 resultListIntent.putExtra(TITLE_KEY, activitiesTitle);
                 startActivity(resultListIntent);
-
             }
         });
 
@@ -100,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    /**
+     * setup all the views
+     */
 
     public void setView(){
         restaurants = (TextView)findViewById(R.id.restaurantsTextView);

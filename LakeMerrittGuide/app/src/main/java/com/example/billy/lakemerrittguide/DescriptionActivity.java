@@ -1,5 +1,6 @@
 package com.example.billy.lakemerrittguide;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,8 +41,11 @@ public class DescriptionActivity extends AppCompatActivity {
         setFavoriteButtonImage();
         setFavoriteButton();
 
+        setImageClickToReturnHome();
 
         }
+
+
 
     public void getAndSetIntentToView() {
 
@@ -107,7 +111,18 @@ public class DescriptionActivity extends AppCompatActivity {
         infoImageTwo = (ImageView)findViewById(R.id.frameTwoImageTwo);
         favoriteButton = (Button)findViewById(R.id.favoriteButton);
 
+    }
 
+    public void setImageClickToReturnHome(){
+
+        logoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DescriptionActivity.this, MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
     }
 

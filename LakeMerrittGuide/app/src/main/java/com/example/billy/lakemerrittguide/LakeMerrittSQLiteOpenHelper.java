@@ -81,6 +81,9 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    /**
+     * This is to build the database
+     */
 
     public void listInsert(String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description, int infoMainLogo, int infoImageOne, int infoImageTwo, String favoriteStatus){
         SQLiteDatabase db = getWritableDatabase();
@@ -107,7 +110,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
 
     /**
-     * need to fix search
+     * This allow user to through search 3 columns
      *
      */
     public Cursor searchLakeMerrittList(String query){
@@ -143,27 +146,11 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-
-
-    public String getTypeById(int _id){
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
-                new String[]{COL_LAKE_MERRITT_TYPE},
-                COL_ID + " = ?",
-                new String[]{String.valueOf(_id)},
-                null,
-                null,
-                null,
-                null);
-        if(cursor.moveToFirst()){
-            return cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_PLACE_NAME));
-        } else {
-            return "Nothing found";
-        }
-
-    }
+    /**
+     * Using OOP for below to display Detail Results for final activity
+     * @param _id
+     * @return
+     */
 
     public ThingsToDo createObjects(int _id){
 
@@ -195,6 +182,12 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
+    /**
+     * Update the database accordingly
+     * @param _id
+     * @param favoriteStatus
+     */
+
     public void updateFavoriteStatus(int _id, String favoriteStatus){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -203,6 +196,11 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         db.update(COL_LAKE_MERRITT_TABLE_NAME, values, "_id=" + _id, null);
         db.close();
     }
+
+    /**
+     * These are setup to pull lists according to names
+     * @return
+     */
 
     public Cursor getFavoriteLists(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -233,8 +231,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    // this is for testing filter only... use if work, delete if not
-    public Cursor testingGetKoreanList(){
+    public Cursor getKoreanList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
@@ -250,7 +247,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * it's
+     * get the list that have breakfast in the type
      * @return
      */
     public Cursor getBreakfastList(){
@@ -260,6 +257,20 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 COL_LAKE_MERRITT_COLUMNS,
                 COL_LAKE_MERRITT_TYPE + " LIKE ?",
                 new String[]{"%Breakfast%"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+    public Cursor getSteakhouseList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_TYPE + " LIKE ? ",
+                new String[]{"%Steakhouse%"},
                 null,
                 null,
                 null,
@@ -326,6 +337,48 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
+    public Cursor get$$$PriceList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_PRICE + " = ?",
+                new String[]{"$$$"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+    public Cursor get$PriceList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_PRICE + " = ?",
+                new String[]{"$"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
+    public Cursor get$$PriceList(){
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
+                COL_LAKE_MERRITT_COLUMNS,
+                COL_LAKE_MERRITT_PRICE + " = ?",
+                new String[]{"$$"},
+                null,
+                null,
+                null,
+                null);
+        return cursor;
+
+    }
 
     public Cursor getParksList(){
         SQLiteDatabase db = this.getReadableDatabase();
@@ -355,10 +408,6 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     }
 
 
-    /**
-     *
-     * can use same logic to create filter!
-     */
     public Cursor getActivitiesList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -373,6 +422,12 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
+
+    /**
+     * Not in use for backup only
+     * @param id
+     * @return
+     */
 
     public Cursor getItem(int id){
         SQLiteDatabase db = this.getReadableDatabase();
