@@ -2,6 +2,7 @@ package com.example.billy.lakemerrittguide;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -89,11 +90,14 @@ public class DescriptionActivity extends AppCompatActivity {
                         favoriteButton.setBackgroundResource(R.drawable.filledfav);
                         helper.updateFavoriteStatus(selectedId, MainActivity.FAVORITE_ICON);
                         thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.FAVORITE_ICON);
+                        Snackbar.make(v, "Added to Favorites", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+
                         break;
                     case MainActivity.FAVORITE_ICON:
                         favoriteButton.setBackgroundResource(R.drawable.emptyfav);
                         helper.updateFavoriteStatus(selectedId, MainActivity.NO_FAVORITE_ICON);
                         thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.NO_FAVORITE_ICON);
+                        Snackbar.make(v, "Removed from Favorites", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                         break;
                 }
             }

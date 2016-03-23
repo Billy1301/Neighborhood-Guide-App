@@ -15,18 +15,19 @@
     <FrameLayout
         android:id="@+id/main_frame_layout"
         android:layout_width="fill_parent"
-        android:layout_height="150dp">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/main_imageLogo"
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/lakemerrittmain"/>
+            android:src="@drawable/lakemerrittmainlogo"/>
 
     </FrameLayout>
 
 
     <LinearLayout
+        android:padding="10dp"
         android:layout_below="@+id/main_frame_layout"
         android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
@@ -92,13 +93,7 @@
             android:id="@+id/main_secondFrame_layout"
             android:layout_width="fill_parent"
             android:layout_height="match_parent">
-        <ImageView
-            android:layout_marginTop="5dp"
-            android:id="@+id/main_logo2"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/lakemerrittlogo"
-            />
+
         </FrameLayout>
 
     </LinearLayout>
