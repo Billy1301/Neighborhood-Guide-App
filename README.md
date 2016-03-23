@@ -11,17 +11,14 @@ Each list will show you related listing for the category you picked. In the Rest
 When a list is open, you can scroll and pick on the one you will like more info on by selecting it. Once you select one, it will bring you the a more detail information about the place. You will be able to favorite it for easy access next time you open the app. You will be able to remove from favorite by clicking on the heart icon to unfavorite it.
 
 
-
-<!DOCTYPE html>
 <html>
 <body>
 
-<img src="http://i.imgur.com/c3ISfQ9.png?1" style="width:304px;height:228px;">
-
+<img src="http://i.imgur.com/c3ISfQ9.png?1" style="width:100px;height:125px;">
+<img src="http://i.imgur.com/HE9euZt.png?1" style="width:100px;height:125px;">
+<img src="http://i.imgur.com/hHwdVhD.png?1" style="width:100px;height:125px;">
 </body>
 </html>
-
-[img]http://i.imgur.com/HE9euZt.png?1[/img]
 
 
 
