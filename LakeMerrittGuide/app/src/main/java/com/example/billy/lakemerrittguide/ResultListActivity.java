@@ -444,7 +444,7 @@ public class ResultListActivity extends AppCompatActivity  {
         resultTitleName.setText(titleExtra);
 
         if(resultTitleName.getText().equals(MainActivity.RESTAURANTS)){
-            titleImageLogo.setImageResource(R.drawable.restaurantbacktitlelogo);
+            titleImageLogo.setImageResource(R.drawable.foodicons1);
         }
         if(resultTitleName.getText().equals(MainActivity.ACTIVITIES)){
             titleImageLogo.setImageResource(R.drawable.whats_happening_logo);

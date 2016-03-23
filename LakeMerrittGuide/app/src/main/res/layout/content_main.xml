@@ -10,16 +10,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.billy.lakemerrittguide.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    >
 
     <FrameLayout
         android:id="@+id/main_frame_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/main_imageLogo"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/lakemerrittmainlogo"/>
 
@@ -32,7 +33,8 @@
         android:id="@+id/mainLinearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center">
 
         <TextView
             android:id="@+id/restaurantsTextView"
@@ -40,10 +42,11 @@
             android:layout_marginTop="10dp"
             android:textSize="35sp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="2dp"
             android:background="@android:color/black" />
 
@@ -53,10 +56,11 @@
             android:textSize="35sp"
             android:text="Activities"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="2dp"
             android:background="@android:color/black" />
 
@@ -67,11 +71,12 @@
             android:textSize="35sp"
             android:text="View All"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="2dp"
             android:background="@android:color/black" />
 
@@ -82,10 +87,11 @@
             android:textSize="35sp"
             android:text="Favorites"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="2dp"
             android:background="@android:color/black" />
 

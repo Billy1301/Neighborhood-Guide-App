@@ -36,17 +36,16 @@
 
 
     <TextView
-    android:id="@+id/rating"
-    android:text="Ratings"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentEnd="true"
-    android:layout_alignTop="@id/address"
-    android:layout_marginTop="5dp"
-    android:layout_marginEnd="10dp"
-    android:textStyle="bold"
-
-    />
+        android:id="@+id/rating"
+        android:text="Ratings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/address"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:textStyle="bold"
+        />
 
     <TextView
         android:id="@+id/price_customView"
@@ -58,7 +57,6 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         android:textStyle="bold"
-
         />
 
 
