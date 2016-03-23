@@ -14,9 +14,9 @@ When a list is open, you can scroll and pick on the one you will like more info 
 <html>
 <body>
 
-<img src="http://i.imgur.com/c3ISfQ9.png?1" style="width:100px;height:125px;">
-<img src="http://i.imgur.com/HE9euZt.png?1" style="width:100px;height:125px;">
-<img src="http://i.imgur.com/hHwdVhD.png?1" style="width:100px;height:125px;">
+<img src="http://i.imgur.com/c3ISfQ9.png?1" width = "100" height = "150">
+<img src="http://i.imgur.com/HE9euZt.png?1" width = "100" height = "150">
+<img src="http://i.imgur.com/hHwdVhD.png?1" width = "100" height = "150">
 </body>
 </html>
 
