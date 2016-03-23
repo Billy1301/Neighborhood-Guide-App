@@ -12,13 +12,18 @@ When a list is open, you can scroll and pick on the one you will like more info 
 
 
 
+<!DOCTYPE html>
+<html>
+<body>
 
+<img src="http://i.imgur.com/c3ISfQ9.png?1" style="width:304px;height:228px;">
 
-[img]http://i.imgur.com/c3ISfQ9.png?1[/img]
+</body>
+</html>
 
 [img]http://i.imgur.com/HE9euZt.png?1[/img]
 
-[img]http://i.imgur.com/hHwdVhD.png?1[/img]
+
 
 
 
