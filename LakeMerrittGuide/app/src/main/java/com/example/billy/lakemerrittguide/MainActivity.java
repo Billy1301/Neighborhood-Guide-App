@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     public final static String VIEW_ALL = "View All";
 
     public final static String TITLE_KEY = "TitleName";
-    public final static String FAVORITE_ICON = "iDoLikeThis";
-    public final static String NO_FAVORITE_ICON = "iDoNotLikeThis";
+    public final static String ADD_FAVORITE = "iDoLikeThis";
+    public final static String REMOVE_FAVORITE = "iDoNotLikeThis";
 
 
     // should create a string for the name and use it
@@ -104,14 +104,12 @@ public class MainActivity extends AppCompatActivity {
     /**
      * setup all the views
      */
-
     public void setView(){
         restaurants = (TextView)findViewById(R.id.restaurantsTextView);
         activity = (TextView)findViewById(R.id.activitiesTextView);
         resultListIntent = new Intent(MainActivity.this, ResultListActivity.class);
         favorites = (TextView)findViewById(R.id.favoriteTextView);
         viewAll = (TextView)findViewById(R.id.vielAllTextView);
-
     }
 
 
@@ -126,12 +124,9 @@ public class MainActivity extends AppCompatActivity {
                 String favoriteTitle = favorites.getText().toString();
                 resultListIntent.putExtra(TITLE_KEY, favoriteTitle);
                 startActivity(resultListIntent);
-
             }
         });
-
     }
-
 
     /**
      * inserting my list into the database
@@ -145,25 +140,23 @@ public class MainActivity extends AppCompatActivity {
 
         if(checkCount<=0) {
 
-
-            lakeMerrittHelper.listInsert( RESTAURANTS, PORTAL, getString(R.string.portal_address), "510-663-7678", "4 stars", "$$", "American, Breakfast & Brunch", getString(R.string.portal_info), R.drawable.portalicon, R.drawable.portalbrunch1, R.drawable.portalfood4, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, JONG_GA, getString(R.string.jong_ga_address), "510-444-7678", "5 stars", "$$", "Korean", getString(R.string.jongGA_info), R.drawable.jonggalogo, R.drawable.jonggafood1, R.drawable.jonggabbq2, NO_FAVORITE_ICON );
-            lakeMerrittHelper.listInsert( RESTAURANTS, GRAND_LAKE, getString(R.string.grand_lake_address), "510-922-9582", "3 stars", "$$$", "American, Breakfast & Brunch, Deli", getString(R.string.grandLakeKitchen_info), R.drawable.grandlakekitchenlogo, R.drawable.grandlakerunch1, R.drawable.grandlakebrunch4, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, THE_ROCKIN_CRAWFISH, getString(R.string.rockin_crawfish_address), "510-251-1657", "4 stars", "$$", "Cajun Seafood", getString(R.string.rockinCrawfish_info), R.drawable.rockincrawfishicon, R.drawable.rockinfoods1, R.drawable.rockinfoods2, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, HADDON_HILL, getString(R.string.haddon_address), null, "5 stars", "$", "Cafe", getString(R.string.haddonHill_info), R.drawable.haddonhillcafelogo, R.drawable.haddonhilldrinks1, R.drawable.haddondrink3, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, ARIZMENDI_BAKERY, getString(R.string.arizmendi_address), "510-268-8849", "5 stars", "$$", "Bakeries, Pizza", getString(R.string.arizmendiBakery_info), R.drawable.arizmendibakerylogo, R.drawable.arizmendi2, R.drawable.arizmendi3, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, MICHEL_BISTRO, getString(R.string.michel_address), "510-836-8737", "4 stars", "$$", "French, Bar", getString(R.string.michelBistro_info), R.drawable.michelbistrologo, R.drawable.michelfood2, R.drawable.michelfood6, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, THE_ALLEY, getString(R.string.alley_address), "510-444-8505", "4 stars", "$$", "Steakhouse", getString(R.string.theAlley_info), R.drawable.thealleylogo, R.drawable.thealleyfood1, R.drawable.thealleyfood, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( RESTAURANTS, OFF_THE_GRID, getString(R.string.offthegrid_address), null, "4 stars", "$$", "Food Trucks", getString(R.string.offTheGrid_info), R.drawable.offthegridlogo, R.drawable.offthegridfoodtrucks1, R.drawable.offthegridfood2, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, THE_GARDENS, getString(R.string.thegardens_address), null, null, null, "Parks", getString(R.string.theGardenInfo), R.drawable.thegardenslogo2, R.drawable.birdwatching1, R.drawable.japanesegarden1, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, JAPANESE_GARDEN, getString(R.string.japanesegarden_address), null, null, null, "Parks", getString(R.string.japaneseGardenInfo), R.drawable.japaneseimage11, R.drawable.japaneseimagemain, R.drawable.japaneseimage22, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, PALM_GARDEN, getString(R.string.palmgarden_address), null, null, null, "Parks", getString(R.string.palmGardenInfo), R.drawable.palmgarden, R.drawable.palmgarden1, R.drawable.palmgarden2, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, THE_MEDITERRANEAN, getString(R.string.mediterran_address), null, null, null, "Parks", getString(R.string.mediterraneanGardenInfo), R.drawable.mediterraneangarden, R.drawable.mediterrane1, R.drawable.meditterdaisybutterfly, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, WATER_SPORTS, getString(R.string.waterSport_address), null, null, null, "Sports", getString(R.string.waterSportsInfo), R.drawable.watersailboat, R.drawable.waterrental, R.drawable.waterrental2, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, FAIRYLAND, getString(R.string.fairyland_address), null, null, null, "Parks", getString(R.string.fairyLandInfo), R.drawable.fairylandlogo, R.drawable.fairyland2, R.drawable.fairyland3, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, EXERCISE, getString(R.string.exercise_address), null, null, null, "Sports", getString(R.string.exerciseInfo), R.drawable.exercising2, R.drawable.exercisestairs, R.drawable.exercising4, NO_FAVORITE_ICON);
-            lakeMerrittHelper.listInsert( ACTIVITIES, FLEA_MARKET, getString(R.string.fleaMarket_address), null, null, null, "Shops", getString(R.string.fleaMarketInfo), R.drawable.fleamarketlogo, R.drawable.fleamarket, R.drawable.fleamarket2, NO_FAVORITE_ICON);
-
+            lakeMerrittHelper.listInsert( RESTAURANTS, PORTAL, getString(R.string.portal_address), "510-663-7678", "4 stars", "$$", "American, Breakfast & Brunch", getString(R.string.portal_info), R.drawable.portalicon, R.drawable.portalbrunch1, R.drawable.portalfood4, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, JONG_GA, getString(R.string.jong_ga_address), "510-444-7678", "5 stars", "$$", "Korean", getString(R.string.jongGA_info), R.drawable.jonggalogo, R.drawable.jonggafood1, R.drawable.jonggabbq2, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, GRAND_LAKE, getString(R.string.grand_lake_address), "510-922-9582", "3 stars", "$$$", "American, Breakfast & Brunch, Deli", getString(R.string.grandLakeKitchen_info), R.drawable.grandlakekitchenlogo, R.drawable.grandlakerunch1, R.drawable.grandlakebrunch4, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, THE_ROCKIN_CRAWFISH, getString(R.string.rockin_crawfish_address), "510-251-1657", "4 stars", "$$", "Cajun Seafood", getString(R.string.rockinCrawfish_info), R.drawable.rockincrawfishicon, R.drawable.rockinfoods1, R.drawable.rockinfoods2, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, HADDON_HILL, getString(R.string.haddon_address), null, "5 stars", "$", "Cafe", getString(R.string.haddonHill_info), R.drawable.haddonhillcafelogo, R.drawable.haddonhilldrinks1, R.drawable.haddondrink3, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, ARIZMENDI_BAKERY, getString(R.string.arizmendi_address), "510-268-8849", "5 stars", "$$", "Bakeries, Pizza", getString(R.string.arizmendiBakery_info), R.drawable.arizmendibakerylogo, R.drawable.arizmendi2, R.drawable.arizmendi3, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, MICHEL_BISTRO, getString(R.string.michel_address), "510-836-8737", "4 stars", "$$", "French, Bar", getString(R.string.michelBistro_info), R.drawable.michelbistrologo, R.drawable.michelfood2, R.drawable.michelfood6, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, THE_ALLEY, getString(R.string.alley_address), "510-444-8505", "4 stars", "$$", "Steakhouse", getString(R.string.theAlley_info), R.drawable.thealleylogo, R.drawable.thealleyfood1, R.drawable.thealleyfood, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( RESTAURANTS, OFF_THE_GRID, getString(R.string.offthegrid_address), null, "4 stars", "$$", "Food Trucks", getString(R.string.offTheGrid_info), R.drawable.offthegridlogo, R.drawable.offthegridfoodtrucks1, R.drawable.offthegridfood2, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, THE_GARDENS, getString(R.string.thegardens_address), null, null, null, "Parks", getString(R.string.theGardenInfo), R.drawable.thegardenslogo2, R.drawable.birdwatching1, R.drawable.japanesegarden1, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, JAPANESE_GARDEN, getString(R.string.japanesegarden_address), null, null, null, "Parks", getString(R.string.japaneseGardenInfo), R.drawable.japaneseimage11, R.drawable.japaneseimagemain, R.drawable.japaneseimage22, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, PALM_GARDEN, getString(R.string.palmgarden_address), null, null, null, "Parks", getString(R.string.palmGardenInfo), R.drawable.palmgarden, R.drawable.palmgarden1, R.drawable.palmgarden2, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, THE_MEDITERRANEAN, getString(R.string.mediterran_address), null, null, null, "Parks", getString(R.string.mediterraneanGardenInfo), R.drawable.mediterraneangarden, R.drawable.mediterrane1, R.drawable.meditterdaisybutterfly, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, WATER_SPORTS, getString(R.string.waterSport_address), "510-238-2196", null, null, "Sports", getString(R.string.waterSportsInfo), R.drawable.watersailboat, R.drawable.waterrental, R.drawable.waterrental2, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, FAIRYLAND, getString(R.string.fairyland_address), null, null, null, "Parks", getString(R.string.fairyLandInfo), R.drawable.fairylandlogo, R.drawable.fairyland2, R.drawable.fairyland3, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, EXERCISE, getString(R.string.exercise_address), null, null, null, "Sports", getString(R.string.exerciseInfo), R.drawable.exercising2, R.drawable.exercisestairs, R.drawable.exercising4, REMOVE_FAVORITE);
+            lakeMerrittHelper.listInsert( ACTIVITIES, FLEA_MARKET, getString(R.string.fleaMarket_address), null, null, null, "Shops", getString(R.string.fleaMarketInfo), R.drawable.fleamarketlogo, R.drawable.fleamarket, R.drawable.fleamarket2, REMOVE_FAVORITE);
 
         }
 

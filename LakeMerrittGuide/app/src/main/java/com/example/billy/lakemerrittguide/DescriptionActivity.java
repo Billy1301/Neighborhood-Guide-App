@@ -55,25 +55,22 @@ public class DescriptionActivity extends AppCompatActivity {
         if (selectedId >= 0) {
 
             thingsToDoClassClickedItem = helper.createObjects(selectedId);
-
             nameTextView.setText(thingsToDoClassClickedItem.getPlaceName());
             descriptionTextView.setText(thingsToDoClassClickedItem.getPlaceInfo());
             locationTextView.setText(thingsToDoClassClickedItem.getPlaceAddress());
             typeTextView.setText(thingsToDoClassClickedItem.getPlaceType());
-
             logoImage.setImageResource(thingsToDoClassClickedItem.getMainImageLogo());
             infoImageOne.setImageResource(thingsToDoClassClickedItem.getInfoImageOne());
             infoImageTwo.setImageResource(thingsToDoClassClickedItem.getInfoImageTwo());
-
 
         }
 
     }
 
     private void setFavoriteButtonImage(){
-        if(thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.NO_FAVORITE_ICON)){
+        if(thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.REMOVE_FAVORITE)){
             favoriteButton.setBackgroundResource(R.drawable.emptyfav);
-        } else if (thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.FAVORITE_ICON)){
+        } else if (thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.ADD_FAVORITE)){
             favoriteButton.setBackgroundResource(R.drawable.filledfav);
         }
     }
@@ -86,17 +83,16 @@ public class DescriptionActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 switch (thingsToDoClassClickedItem.getFavoriteStatus()) {
-                    case MainActivity.NO_FAVORITE_ICON:
+                    case MainActivity.REMOVE_FAVORITE:
                         favoriteButton.setBackgroundResource(R.drawable.filledfav);
-                        helper.updateFavoriteStatus(selectedId, MainActivity.FAVORITE_ICON);
-                        thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.FAVORITE_ICON);
+                        helper.updateFavoriteStatus(selectedId, MainActivity.ADD_FAVORITE);
+                        thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.ADD_FAVORITE);
                         Snackbar.make(v, "Added to Favorites", Snackbar.LENGTH_LONG).setAction("Action", null).show();
-
                         break;
-                    case MainActivity.FAVORITE_ICON:
+                    case MainActivity.ADD_FAVORITE:
                         favoriteButton.setBackgroundResource(R.drawable.emptyfav);
-                        helper.updateFavoriteStatus(selectedId, MainActivity.NO_FAVORITE_ICON);
-                        thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.NO_FAVORITE_ICON);
+                        helper.updateFavoriteStatus(selectedId, MainActivity.REMOVE_FAVORITE);
+                        thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.REMOVE_FAVORITE);
                         Snackbar.make(v, "Removed from Favorites", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                         break;
                 }

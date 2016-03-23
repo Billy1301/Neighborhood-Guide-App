@@ -21,8 +21,9 @@
 
     <FrameLayout
         android:id="@+id/descriptionFrameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
 
         <ImageView
             android:id="@+id/descriptionImageLogo"
@@ -71,6 +72,7 @@
     </LinearLayout>
 
     <Button
+        android:layout_marginRight="15dp"
         android:id="@+id/favoriteButton"
         android:layout_width="50dp"
         android:layout_height="50dp"
@@ -89,31 +91,32 @@
         android:hint="about the placeeeee"
         />
 
-    <LinearLayout
+    <FrameLayout
+        android:layout_marginTop="20dp"
         android:layout_below="@id/descriptionInfoDetailText"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        >
 
 
         <ImageView
-            android:layout_marginBottom="10dp"
-            android:id="@+id/frameTwoImageTwo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/android_arms"
-            />
-
-        <ImageView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/frameTwoImageOne"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:src="@drawable/restaurantbacktitlelogo"
-            />
+            android:layout_gravity="right|bottom" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/frameTwoImageTwo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/android_arms"
+            android:layout_gravity="left|top" />
+
+    </FrameLayout>
 
 
     </RelativeLayout>
