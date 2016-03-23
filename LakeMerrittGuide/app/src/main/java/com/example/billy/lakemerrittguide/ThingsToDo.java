@@ -1,5 +1,7 @@
 package com.example.billy.lakemerrittguide;
 
+import java.util.ArrayList;
+
 /**
  * Created by Billy on 3/18/16.
  */
@@ -15,6 +17,8 @@ public class ThingsToDo {
     private int mainImageLogo;
     private int infoImageOne;
     private int infoImageTwo;
+
+
 
 
     public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo) {
@@ -129,6 +133,8 @@ public class ThingsToDo {
     public void setInfoImageTwo(int infoImageTwo) {
         this.infoImageTwo = infoImageTwo;
     }
+
+
 }
 
 

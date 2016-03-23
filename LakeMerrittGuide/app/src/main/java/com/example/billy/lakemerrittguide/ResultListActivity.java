@@ -92,8 +92,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 1) {
@@ -108,8 +108,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 2) {
@@ -123,8 +123,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
                         cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 3) {
@@ -139,8 +139,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         } else if (resultTitleName.getText().equals(MainActivity.FAVORITES)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFavoriteLists();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
 
@@ -160,8 +160,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 1) {
@@ -169,8 +169,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).get$PriceList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 2) {
@@ -179,8 +179,8 @@ public class ResultListActivity extends AppCompatActivity  {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).get$$PriceList();
 
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 3) {
@@ -188,8 +188,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).get$$$PriceList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
                 }
 
@@ -206,8 +206,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 1) {
@@ -215,8 +215,8 @@ public class ResultListActivity extends AppCompatActivity  {
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getThreeStarsList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 2) {
@@ -225,8 +225,8 @@ public class ResultListActivity extends AppCompatActivity  {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFourStarsList();
 
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
+
                     }
 
                     if (position == 3) {
@@ -234,8 +234,7 @@ public class ResultListActivity extends AppCompatActivity  {
                         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getFiveStarsList();
                         }
-                        cursorAdapter.changeCursor(cursor);
-                        cursorAdapter.notifyDataSetChanged();
+                        changeCursorRefreshAdapter();
                     }
 
                 }
@@ -245,6 +244,12 @@ public class ResultListActivity extends AppCompatActivity  {
 
                 }
             });
+    }
+
+
+    public void changeCursorRefreshAdapter(){
+        cursorAdapter.changeCursor(cursor);
+        cursorAdapter.notifyDataSetChanged();
     }
 
 
@@ -384,12 +389,8 @@ public class ResultListActivity extends AppCompatActivity  {
         typeFilterSpinner = (Spinner) findViewById(R.id.type_static_spinner);
         priceFilterSpinner = (Spinner) findViewById(R.id.price_static_spinner);
         ratingFilterSpinner = (Spinner) findViewById(R.id.rating_static_spinner);
-
         titleImageLogo = (ImageView)findViewById(R.id.resultImageIcon);
-
         intent = new Intent(ResultListActivity.this, DescriptionActivity.class);
-
-
 
     }
 
