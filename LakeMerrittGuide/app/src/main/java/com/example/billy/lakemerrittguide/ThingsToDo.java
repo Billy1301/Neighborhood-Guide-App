@@ -32,7 +32,7 @@ public class ThingsToDo {
     }
 
 
-    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo, int mainImageLogo, int infoImageOne, int infoImageTwo, String favoriteStatus) {
+    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo, int mainImageLogo, int infoImageOne, String favoriteStatus) {
         this.placeName = placeName;
         this.placeAddress = placeAddress;
         this.placeRatings = placeRatings;
@@ -42,7 +42,7 @@ public class ThingsToDo {
         this.placeInfo = placeInfo;
         this.mainImageLogo = mainImageLogo;
         this.infoImageOne = infoImageOne;
-        this.infoImageTwo = infoImageTwo;
+        //this.infoImageTwo = infoImageTwo;
         this.favoriteStatus = favoriteStatus;
     }
 

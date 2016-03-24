@@ -4,9 +4,11 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,7 +39,6 @@ public class ResultListActivity extends AppCompatActivity  {
     private List<String> typeFilters, priceFilters, ratingFilters;
     private ImageView titleImageLogo;
     Intent intent;
-    String restaurantName;
 
     public static final String ID_KEY_SENDING = "_id";
 

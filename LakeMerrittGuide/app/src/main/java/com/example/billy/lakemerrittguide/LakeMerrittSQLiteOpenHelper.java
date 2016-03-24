@@ -25,7 +25,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_LAKE_MERRITT_DESCRIPTION = "DESCRIPTION";
     public static final String COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE = "INFOLOGOIMAGE";
     public static final String COL_LAKE_MERRITT_INFOIMAGEONE = "IMAGEONE";
-    public static final String COL_LAKE_MERRITT_INFOIMAGETWO = "IMAGETWO";
+    //public static final String COL_LAKE_MERRITT_INFOIMAGETWO = "IMAGETWO";
     public static final String COL_LAKE_MERRITT_FAVORITE_STATUS = "FAVORITESTATUS";
 
     public static final String COL_ID = "_id";
@@ -33,7 +33,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     public static final String[] COL_LAKE_MERRITT_COLUMNS = {COL_ID,COL_CATEGORY_LIST, COL_LAKE_MERRITT_PLACE_NAME, COL_LAKE_MERRITT_ADDRESS,
             COL_LAKE_MERRITT_PHONE, COL_LAKE_MERRITT_RATINGS, COL_LAKE_MERRITT_PRICE, COL_LAKE_MERRITT_TYPE, COL_LAKE_MERRITT_DESCRIPTION,
-            COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE, COL_LAKE_MERRITT_INFOIMAGEONE, COL_LAKE_MERRITT_INFOIMAGETWO, COL_LAKE_MERRITT_FAVORITE_STATUS};
+            COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE, COL_LAKE_MERRITT_INFOIMAGEONE, COL_LAKE_MERRITT_FAVORITE_STATUS};
 
 
     /**
@@ -53,7 +53,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                     COL_LAKE_MERRITT_DESCRIPTION + " TEXT, " +
                     COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE + " INTEGER, " +
                     COL_LAKE_MERRITT_INFOIMAGEONE + " INTEGER, " +
-                    COL_LAKE_MERRITT_INFOIMAGETWO + " INTEGER, " +
+                    //COL_LAKE_MERRITT_INFOIMAGETWO + " INTEGER, " +
                     COL_LAKE_MERRITT_FAVORITE_STATUS + " INTEGER)";
 
     public static final String DROP_LAKE_MERRITT_TABLE = "DROP TABLE IF EXISTS " + COL_LAKE_MERRITT_TABLE_NAME;
@@ -86,7 +86,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
      * This is to build the database
      */
 
-    public void listInsert(String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description, int infoMainLogo, int infoImageOne, int infoImageTwo, String favoriteStatus){
+    public void listInsert(String categoryList, String placeName, String address, String phoneNumber, String ratings, String price, String type, String description, int infoMainLogo, int infoImageOne, String favoriteStatus){
 
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -101,7 +101,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_LAKE_MERRITT_DESCRIPTION, description);
         values.put(COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE, infoMainLogo);
         values.put(COL_LAKE_MERRITT_INFOIMAGEONE, infoImageOne);
-        values.put(COL_LAKE_MERRITT_INFOIMAGETWO, infoImageTwo);
+        //values.put(COL_LAKE_MERRITT_INFOIMAGETWO, infoImageTwo);
         values.put(COL_LAKE_MERRITT_FAVORITE_STATUS, favoriteStatus);
 
         db.insert(COL_LAKE_MERRITT_TABLE_NAME, null, values);
@@ -174,10 +174,10 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         String rating = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_RATINGS));
         int mainLogo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE));
         int imageOne = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGEONE));
-        int imageTwo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGETWO));
+        //int imageTwo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGETWO));
         String favorite = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_FAVORITE_STATUS));
 
-        return new ThingsToDo(name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, imageTwo, favorite);
+        return new ThingsToDo(name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, favorite);
 
     }
 

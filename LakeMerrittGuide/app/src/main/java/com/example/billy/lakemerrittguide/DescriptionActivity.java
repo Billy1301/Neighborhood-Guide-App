@@ -20,7 +20,6 @@ public class DescriptionActivity extends AppCompatActivity {
     private TextView typeTextView;
     private ImageView logoImage;
     private ImageView infoImageOne;
-    private ImageView infoImageTwo;
     private int selectedId;
     private Button favoriteButton;
 
@@ -61,7 +60,6 @@ public class DescriptionActivity extends AppCompatActivity {
             typeTextView.setText(thingsToDoClassClickedItem.getPlaceType());
             logoImage.setImageResource(thingsToDoClassClickedItem.getMainImageLogo());
             infoImageOne.setImageResource(thingsToDoClassClickedItem.getInfoImageOne());
-            infoImageTwo.setImageResource(thingsToDoClassClickedItem.getInfoImageTwo());
 
         }
 
@@ -108,7 +106,6 @@ public class DescriptionActivity extends AppCompatActivity {
         typeTextView = (TextView)findViewById(R.id.descriptionTypeTextView);
         logoImage = (ImageView)findViewById(R.id.descriptionImageLogo);
         infoImageOne = (ImageView)findViewById(R.id.frameTwoImageOne);
-        infoImageTwo = (ImageView)findViewById(R.id.frameTwoImageTwo);
         favoriteButton = (Button)findViewById(R.id.favoriteButton);
 
     }
