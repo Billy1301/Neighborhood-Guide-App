@@ -33,15 +33,11 @@ public class DescriptionActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         setView();
-
-        helper = LakeMerrittSQLiteOpenHelper.getInstance(DescriptionActivity.this);
         getAndSetIntentToView();
         setFavoriteButtonImage();
         setFavoriteButton();
 
-        setImageClickToReturnHome();
 
         }
 
@@ -107,8 +103,14 @@ public class DescriptionActivity extends AppCompatActivity {
         logoImage = (ImageView)findViewById(R.id.descriptionImageLogo);
         infoImageOne = (ImageView)findViewById(R.id.frameTwoImageOne);
         favoriteButton = (Button)findViewById(R.id.favoriteButton);
+        helper = LakeMerrittSQLiteOpenHelper.getInstance(DescriptionActivity.this);
+
 
     }
+
+    /**
+     * I want to 
+     */
 
     public void setImageClickToReturnHome(){
 

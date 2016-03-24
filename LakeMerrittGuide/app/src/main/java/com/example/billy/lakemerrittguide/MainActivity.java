@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     public final static String ADD_FAVORITE = "iDoLikeThis";
     public final static String REMOVE_FAVORITE = "iDoNotLikeThis";
 
-
     // should create a string for the name and use it
 
     public final static String PORTAL = "Portal";
@@ -65,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
         setFavoriteButton();
 
     }
+
+
+
 
     /**
      * Set Click Listener for the Text
