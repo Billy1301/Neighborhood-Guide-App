@@ -109,7 +109,7 @@ public class DescriptionActivity extends AppCompatActivity {
     }
 
     /**
-     * I want to 
+     * I want to
      */
 
     public void setImageClickToReturnHome(){

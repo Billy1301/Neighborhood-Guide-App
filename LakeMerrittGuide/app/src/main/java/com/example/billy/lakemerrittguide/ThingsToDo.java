@@ -21,14 +21,13 @@ public class ThingsToDo {
 
 
 
-    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo) {
+    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice) {
         this.placeName = placeName;
         this.placeAddress = placeAddress;
         this.placeRatings = placeRatings;
         this.placePhoneNumber = placePhoneNumber;
         this.placeType = placeType;
         this.placePrice = placePrice;
-        this.placeInfo = placeInfo;
     }
 
 
