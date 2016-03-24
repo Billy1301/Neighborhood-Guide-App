@@ -33,15 +33,15 @@ ____________________________
 
 <html>
 <body>
-<p>As a user, I can view the Restaurants list when I click on it.</p>
-<p>As a user, I can select a list from the Restaurants list to pull up more information.</p> 
-<p>As a user, I can add the place to my favorite list.</p>
-<p>As a user, I can remove the favorite from the favorite list.</p>
-<p>As a user, I can view the Activities list when I click on it.</p>
-<p>As a user, I can select a list from the Activities list to get more information.</p>
-<p>As a user, I can view All the available things to do.</p>
-<p>As a user, I can view my Favorite list from the main page if there is any added.</p>
-<p>As a user, I can filter by certain type by choosing the dialog filter from the list results.</p>
-<p>As a user, I can use the search function to certain for place name and type.</p>
+<p>As a user, I can view the Restaurants list when I click on it.
+<br>As a user, I can select a list from the Restaurants list to pull up more information.
+<br>As a user, I can add the place to my favorite list.
+<br>As a user, I can remove the favorite from the favorite list.
+<br>As a user, I can view the Activities list when I click on it.
+<br>As a user, I can select a list from the Activities list to get more information.
+<br>As a user, I can view All the available things to do.
+<br>As a user, I can view my Favorite list from the main page if there is any added.
+<br>As a user, I can filter by certain type by choosing the dialog filter from the list results.
+<br>As a user, I can use the search function to certain for place name and type.</p>
 </body>
 </html>

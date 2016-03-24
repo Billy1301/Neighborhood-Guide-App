@@ -25,7 +25,6 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
     public static final String COL_LAKE_MERRITT_DESCRIPTION = "DESCRIPTION";
     public static final String COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE = "INFOLOGOIMAGE";
     public static final String COL_LAKE_MERRITT_INFOIMAGEONE = "IMAGEONE";
-    //public static final String COL_LAKE_MERRITT_INFOIMAGETWO = "IMAGETWO";
     public static final String COL_LAKE_MERRITT_FAVORITE_STATUS = "FAVORITESTATUS";
 
     public static final String COL_ID = "_id";
@@ -53,7 +52,6 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                     COL_LAKE_MERRITT_DESCRIPTION + " TEXT, " +
                     COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE + " INTEGER, " +
                     COL_LAKE_MERRITT_INFOIMAGEONE + " INTEGER, " +
-                    //COL_LAKE_MERRITT_INFOIMAGETWO + " INTEGER, " +
                     COL_LAKE_MERRITT_FAVORITE_STATUS + " INTEGER)";
 
     public static final String DROP_LAKE_MERRITT_TABLE = "DROP TABLE IF EXISTS " + COL_LAKE_MERRITT_TABLE_NAME;
@@ -101,7 +99,6 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         values.put(COL_LAKE_MERRITT_DESCRIPTION, description);
         values.put(COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE, infoMainLogo);
         values.put(COL_LAKE_MERRITT_INFOIMAGEONE, infoImageOne);
-        //values.put(COL_LAKE_MERRITT_INFOIMAGETWO, infoImageTwo);
         values.put(COL_LAKE_MERRITT_FAVORITE_STATUS, favoriteStatus);
 
         db.insert(COL_LAKE_MERRITT_TABLE_NAME, null, values);
@@ -151,7 +148,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
      * @return
      */
 
-    public ThingsToDo createObjects(int _id){
+    public ThingsToDoClass createObjects(int _id){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -165,6 +162,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
                 null);
 
         cursor.moveToFirst();
+        String category = cursor.getString(cursor.getColumnIndex(COL_CATEGORY_LIST));
         String name = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_PLACE_NAME));
         String type = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_TYPE));
         String location = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_ADDRESS));
@@ -174,10 +172,9 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         String rating = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_RATINGS));
         int mainLogo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFO_MAINLOGOIMAGE));
         int imageOne = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGEONE));
-        //int imageTwo = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGETWO));
         String favorite = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_FAVORITE_STATUS));
 
-        return new ThingsToDo(name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, favorite);
+        return new ThingsToDoClass(category, name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, favorite);
 
     }
 
@@ -293,13 +290,13 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getThreeStarsList(){
+    public Cursor getThreeStarsList(String rating){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
                 COL_LAKE_MERRITT_RATINGS + " = ?",
-                new String[]{"3 stars"},
+                new String[]{rating},
                 null,
                 null,
                 null,
@@ -335,41 +332,19 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
-    public Cursor get$$$PriceList(){
+
+    /**
+     * the (String "price") will pull the correct result from the filter according to the price filter(spinner) position from ResultListActivity
+     * @param price
+     * @return
+     */
+    public Cursor getPriceList(String price){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
                 COL_LAKE_MERRITT_COLUMNS,
                 COL_LAKE_MERRITT_PRICE + " = ?",
-                new String[]{"$$$"},
-                null,
-                null,
-                null,
-                null);
-        return cursor;
-
-    }
-    public Cursor get$PriceList(){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
-                COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_PRICE + " = ?",
-                new String[]{"$"},
-                null,
-                null,
-                null,
-                null);
-        return cursor;
-
-    }
-    public Cursor get$$PriceList(){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
-                COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_PRICE + " = ?",
-                new String[]{"$$"},
+                new String[]{price},
                 null,
                 null,
                 null,

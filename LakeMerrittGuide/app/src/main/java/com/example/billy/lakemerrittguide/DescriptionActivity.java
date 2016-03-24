@@ -13,7 +13,7 @@ import android.widget.TextView;
 public class DescriptionActivity extends AppCompatActivity {
 
     LakeMerrittSQLiteOpenHelper helper;
-    private ThingsToDo thingsToDoClassClickedItem;
+    private ThingsToDoClass thingsToDoClassClassClickedItem;
     private TextView nameTextView;
     private TextView descriptionTextView;
     private TextView locationTextView;
@@ -49,26 +49,30 @@ public class DescriptionActivity extends AppCompatActivity {
 
         if (selectedId >= 0) {
 
-            thingsToDoClassClickedItem = helper.createObjects(selectedId);
-            nameTextView.setText(thingsToDoClassClickedItem.getPlaceName());
-            descriptionTextView.setText(thingsToDoClassClickedItem.getPlaceInfo());
-            locationTextView.setText(thingsToDoClassClickedItem.getPlaceAddress());
-            typeTextView.setText(thingsToDoClassClickedItem.getPlaceType());
-            logoImage.setImageResource(thingsToDoClassClickedItem.getMainImageLogo());
-            infoImageOne.setImageResource(thingsToDoClassClickedItem.getInfoImageOne());
+            thingsToDoClassClassClickedItem = helper.createObjects(selectedId);
+            nameTextView.setText(thingsToDoClassClassClickedItem.getPlaceName());
+            descriptionTextView.setText(thingsToDoClassClassClickedItem.getPlaceInfo());
+            locationTextView.setText(thingsToDoClassClassClickedItem.getPlaceAddress());
+            typeTextView.setText(thingsToDoClassClassClickedItem.getPlaceType());
+            logoImage.setImageResource(thingsToDoClassClassClickedItem.getInfoMainImageLogo());
+            infoImageOne.setImageResource(thingsToDoClassClassClickedItem.getInfoImageOne());
 
         }
 
     }
 
     private void setFavoriteButtonImage(){
-        if(thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.REMOVE_FAVORITE)){
+        if(thingsToDoClassClassClickedItem.getFavoriteStatus().equals(MainActivity.REMOVE_FAVORITE)){
             favoriteButton.setBackgroundResource(R.drawable.emptyfav);
-        } else if (thingsToDoClassClickedItem.getFavoriteStatus().equals(MainActivity.ADD_FAVORITE)){
+        } else if (thingsToDoClassClassClickedItem.getFavoriteStatus().equals(MainActivity.ADD_FAVORITE)){
             favoriteButton.setBackgroundResource(R.drawable.filledfav);
         }
     }
 
+
+    /**
+     * This will let the user click on the heart icon to favorite it or remove favorite it
+     */
 
     public void setFavoriteButton(){
 
@@ -76,17 +80,17 @@ public class DescriptionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                switch (thingsToDoClassClickedItem.getFavoriteStatus()) {
+                switch (thingsToDoClassClassClickedItem.getFavoriteStatus()) {
                     case MainActivity.REMOVE_FAVORITE:
                         favoriteButton.setBackgroundResource(R.drawable.filledfav);
                         helper.updateFavoriteStatus(selectedId, MainActivity.ADD_FAVORITE);
-                        thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.ADD_FAVORITE);
+                        thingsToDoClassClassClickedItem.setFavoriteStatus(MainActivity.ADD_FAVORITE);
                         Snackbar.make(v, "Added to Favorites", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                         break;
                     case MainActivity.ADD_FAVORITE:
                         favoriteButton.setBackgroundResource(R.drawable.emptyfav);
                         helper.updateFavoriteStatus(selectedId, MainActivity.REMOVE_FAVORITE);
-                        thingsToDoClassClickedItem.setFavoriteStatus(MainActivity.REMOVE_FAVORITE);
+                        thingsToDoClassClassClickedItem.setFavoriteStatus(MainActivity.REMOVE_FAVORITE);
                         Snackbar.make(v, "Removed from Favorites", Snackbar.LENGTH_LONG).setAction("Action", null).show();
                         break;
                 }
@@ -105,23 +109,6 @@ public class DescriptionActivity extends AppCompatActivity {
         favoriteButton = (Button)findViewById(R.id.favoriteButton);
         helper = LakeMerrittSQLiteOpenHelper.getInstance(DescriptionActivity.this);
 
-
-    }
-
-    /**
-     * I want to
-     */
-
-    public void setImageClickToReturnHome(){
-
-        logoImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DescriptionActivity.this, MainActivity.class);
-                startActivity(intent);
-
-            }
-        });
 
     }
 

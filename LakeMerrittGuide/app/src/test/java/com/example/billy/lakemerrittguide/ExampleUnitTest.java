@@ -3,7 +3,6 @@ package com.example.billy.lakemerrittguide;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertEquals;
-import static org.junit.Assert.*;
 
 /**
  * To work on unit tests, switch the Test Artifact in the Build Variants view.
@@ -13,7 +12,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testFullName(){
-        ThingsToDo fullName = new ThingsToDo("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
+        ThingsToDoClass fullName = new ThingsToDoClass("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
 
         String expected = "Portal";
         String actual = fullName.getPlaceName();
@@ -23,7 +22,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testAdress(){
-        ThingsToDo address = new ThingsToDo("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
+        ThingsToDoClass address = new ThingsToDoClass("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
 
         String expected = "234 Foothill";
         String actual = address.getPlaceAddress();
@@ -35,7 +34,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testRating(){
-        ThingsToDo rating = new ThingsToDo("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
+        ThingsToDoClass rating = new ThingsToDoClass("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
 
         String expected = "4 Stars";
         String actual = rating.getPlaceRatings();
@@ -46,7 +45,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testPhone(){
-        ThingsToDo phone = new ThingsToDo("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
+        ThingsToDoClass phone = new ThingsToDoClass("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
 
         String expected = "510-234,5678";
         String actual = phone.getPlacePhoneNumber();
@@ -57,7 +56,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testType(){
-        ThingsToDo type = new ThingsToDo("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
+        ThingsToDoClass type = new ThingsToDoClass("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
 
         String expected = "Brunch";
         String actual = type.getPlaceType();
@@ -68,7 +67,7 @@ public class ExampleUnitTest {
 
     @Test
     public void testPrice(){
-        ThingsToDo price = new ThingsToDo("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
+        ThingsToDoClass price = new ThingsToDoClass("Portal", "234 Foothill", "4 Stars", "510-234,5678", "Brunch", "$$");
 
         String expected = "$$";
         String actual = price.getPlacePrice();

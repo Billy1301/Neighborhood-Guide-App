@@ -1,11 +1,9 @@
 package com.example.billy.lakemerrittguide;
 
-import java.util.ArrayList;
-
 /**
  * Created by Billy on 3/18/16.
  */
-public class ThingsToDo {
+public class ThingsToDoClass {
     private String placeName;
     private String placeAddress;
     private String placeRatings;
@@ -14,14 +12,16 @@ public class ThingsToDo {
     private String placePrice;
     private String placeInfo;
     private String favoriteStatus;
-    private int mainImageLogo;
+    private String CategoryTypes;
+    private int infoMainImageLogo;
     private int infoImageOne;
-    private int infoImageTwo;
 
 
+    public ThingsToDoClass(){
 
+    }
 
-    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice) {
+    public ThingsToDoClass(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice) {
         this.placeName = placeName;
         this.placeAddress = placeAddress;
         this.placeRatings = placeRatings;
@@ -30,8 +30,8 @@ public class ThingsToDo {
         this.placePrice = placePrice;
     }
 
-
-    public ThingsToDo(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice, String placeInfo, int mainImageLogo, int infoImageOne, String favoriteStatus) {
+    public ThingsToDoClass(String categoryTypes, String placeName, String placeAddress, String placePhoneNumber, String placeRatings, String placePrice, String placeType,  String placeInfo, int infoMainImageLogo, int infoImageOne, String favoriteStatus) {
+        this.CategoryTypes = categoryTypes;
         this.placeName = placeName;
         this.placeAddress = placeAddress;
         this.placeRatings = placeRatings;
@@ -39,9 +39,8 @@ public class ThingsToDo {
         this.placeType = placeType;
         this.placePrice = placePrice;
         this.placeInfo = placeInfo;
-        this.mainImageLogo = mainImageLogo;
+        this.infoMainImageLogo = infoMainImageLogo;
         this.infoImageOne = infoImageOne;
-        //this.infoImageTwo = infoImageTwo;
         this.favoriteStatus = favoriteStatus;
     }
 
@@ -109,12 +108,12 @@ public class ThingsToDo {
         this.placeInfo = placeInfo;
     }
 
-    public int getMainImageLogo() {
-        return mainImageLogo;
+    public int getInfoMainImageLogo() {
+        return infoMainImageLogo;
     }
 
-    public void setMainImageLogo(int mainImageLogo) {
-        this.mainImageLogo = mainImageLogo;
+    public void setInfoMainImageLogo(int infoMainImageLogo) {
+        this.infoMainImageLogo = infoMainImageLogo;
     }
 
     public int getInfoImageOne() {
@@ -125,15 +124,13 @@ public class ThingsToDo {
         this.infoImageOne = infoImageOne;
     }
 
-    public int getInfoImageTwo() {
-        return infoImageTwo;
+    public String getCategoryTypes() {
+        return CategoryTypes;
     }
 
-    public void setInfoImageTwo(int infoImageTwo) {
-        this.infoImageTwo = infoImageTwo;
+    public void setCategoryTypes(String categoryTypes) {
+        CategoryTypes = categoryTypes;
     }
-
-
 }
 
 
