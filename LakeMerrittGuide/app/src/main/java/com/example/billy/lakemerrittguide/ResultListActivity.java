@@ -90,7 +90,7 @@ public class ResultListActivity extends AppCompatActivity  {
     /**
      * This setup the Spinner Item to filter out listing to the pre-set choices
      * There are two ways to do below. typeFilter example does seem like a lot of codes
-     * Price and rating examples looks more cleaner, try to use it as often as possible
+     * Price and rating way is more cleaner, try to use it as often as possible
      */
 
     public void setFilterClicker(){
