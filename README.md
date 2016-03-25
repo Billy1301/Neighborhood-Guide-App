@@ -21,9 +21,14 @@ When a list is open, you can scroll and pick on the one you want more informatio
 
 
 
+
 - Created by Bill Ly
+
+
 
 ------------
 
-Future update: more listings
+** App is optimized for mobile phone usage. Larger mobile device with screen size of 5 in or more will not look best.
+
+* Future update: more listings
 

@@ -36,7 +36,7 @@ public class InsertListsForDB {
         portalRestaurant.setFavoriteStatus(REMOVE_FAVORITE);
 
         ThingsToDoClass jongGaRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.jongGaName), context.getString(R.string.jong_ga_address), context.getString(R.string.jongGaPhone), context.getString(R.string.five_stars), context.getString(R.string.moderatePrice), context.getString(R.string.korean_type), context.getString(R.string.jongGA_info), R.drawable.jonggabbq2, R.drawable.jonggafood1, REMOVE_FAVORITE);
-        ThingsToDoClass grandLakeRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.grandLakeName), context.getString(R.string.grand_lake_address), context.getString(R.string.grandLakePhone), context.getString(R.string.three_stars), context.getString(R.string.high_price), context.getString(R.string.grandLake_type), context.getString(R.string.grandLakeKitchen_info), R.drawable.grandlakekitchenlogo, R.drawable.grandlakerunch1, REMOVE_FAVORITE);
+        ThingsToDoClass grandLakeRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.grandLakeName), context.getString(R.string.grand_lake_address), context.getString(R.string.grandLakePhone), context.getString(R.string.three_stars), context.getString(R.string.high_price), context.getString(R.string.grandLake_type), context.getString(R.string.grandLakeKitchen_info), R.drawable.grandlake10, R.drawable.grandlakerunch1, REMOVE_FAVORITE);
         ThingsToDoClass rockinCrawfishRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.rockinCrawfishName), context.getString(R.string.rockin_crawfish_address), context.getString(R.string.rockinCrawfishPhone), context.getString(R.string.four_stars), context.getString(R.string.moderatePrice), context.getString(R.string.rockinCrawfish_type), context.getString(R.string.rockinCrawfish_info), R.drawable.rockinfoods2, R.drawable.rockinfoods1, REMOVE_FAVORITE);
         ThingsToDoClass haddonCafeRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.haddonCafeName), context.getString(R.string.haddon_address), null, context.getString(R.string.five_stars), context.getString(R.string.low_price), context.getString(R.string.cafe_type_name), context.getString(R.string.haddonHill_info), R.drawable.haddonhillcafelogo, R.drawable.haddonhilldrinks1, REMOVE_FAVORITE);
         ThingsToDoClass arizmendiRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.arizmendiName), context.getString(R.string.arizmendi_address), context.getString(R.string.arizmedi_phone), context.getString(R.string.five_stars), context.getString(R.string.moderatePrice),context.getString(R.string.arizmendi_type), context.getString(R.string.arizmendiBakery_info), R.drawable.arizmendibakerylogo, R.drawable.arizmendi2, REMOVE_FAVORITE);
@@ -45,15 +45,15 @@ public class InsertListsForDB {
         ThingsToDoClass offTheGridRestaurant = new ThingsToDoClass(RESTAURANTS_CATEGORY, context.getString(R.string.offTheGridName), context.getString(R.string.offthegrid_address), null, context.getString(R.string.four_stars), context.getString(R.string.moderatePrice), context.getString(R.string.offTheGrid_type), context.getString(R.string.offTheGrid_info), R.drawable.offthegridfood2, R.drawable.offthegridfoodtrucks1, REMOVE_FAVORITE);
 
         ArrayList<ThingsToDoClass> restaurants = new ArrayList<>();
+        restaurants.add(theAlleyRestaurant);
         restaurants.add(portalRestaurant);
+        restaurants.add(rockinCrawfishRestaurant);
+        restaurants.add(offTheGridRestaurant);
         restaurants.add(jongGaRestaurant);
         restaurants.add(grandLakeRestaurant);
-        restaurants.add(rockinCrawfishRestaurant);
         restaurants.add(haddonCafeRestaurant);
         restaurants.add(arizmendiRestaurant);
         restaurants.add(michelBistroRestaurant);
-        restaurants.add(theAlleyRestaurant);
-        restaurants.add(offTheGridRestaurant);
 
 
         return restaurants;
@@ -72,14 +72,14 @@ public class InsertListsForDB {
         ThingsToDoClass farmerMarket = new ThingsToDoClass(ACTIVITIES_CATEGORY, context.getString(R.string.farmerMarketName), context.getString(R.string.farmerMarket_address), null, null, null, context.getString(R.string.shop_type_name), context.getString(R.string.fleaMarketInfo), R.drawable.farmermarketlogo, R.drawable.farmermarket, REMOVE_FAVORITE);
 
         ArrayList<ThingsToDoClass> activities = new ArrayList<>();
-        activities.add(theGarden);
-        activities.add(japaneseGarden);
-        activities.add(palmGarden);
-        activities.add(mediterranGarden);
         activities.add(waterSports);
+        activities.add(farmerMarket);
         activities.add(fairyland);
         activities.add(exercise);
-        activities.add(farmerMarket);
+        activities.add(theGarden);
+        activities.add(palmGarden);
+        activities.add(mediterranGarden);
+        activities.add(japaneseGarden);
 
         return activities;
 
