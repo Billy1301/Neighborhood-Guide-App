@@ -265,39 +265,39 @@ public class ResultListActivity extends AppCompatActivity  {
     public void setFilterNames() {
 
         if (resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
-            typeFilterLists.add("Show All");
+            typeFilterLists.add(getString(R.string.show_all_filter));
             typeFilterLists.add("Korean");
             typeFilterLists.add("Brunch");
             typeFilterLists.add("Steakhouse");
 
-            priceFilterLists.add("Show All Price");
+            priceFilterLists.add("Price - Show All");
             priceFilterLists.add("$");
             priceFilterLists.add("$$");
             priceFilterLists.add("$$$");
 
-            ratingFilterLists.add("Show All Ratings");
-            ratingFilterLists.add("3 stars");
-            ratingFilterLists.add("4 stars");
-            ratingFilterLists.add("5 stars");
+            ratingFilterLists.add("Ratings - Show All");
+            ratingFilterLists.add(getString(R.string.three_stars));
+            ratingFilterLists.add(getString(R.string.four_stars));
+            ratingFilterLists.add(getString(R.string.five_stars));
 
 
         } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
-            typeFilterLists.add("Show All");
-            typeFilterLists.add("Sports");
-            typeFilterLists.add("Parks");
-            typeFilterLists.add("Shops");
+            typeFilterLists.add(getString(R.string.show_all_filter));
+            typeFilterLists.add(getString(R.string.sports_type_name));
+            typeFilterLists.add(getString(R.string.parks_type_name));
+            typeFilterLists.add(getString(R.string.shop_type_name));
 
-            priceFilterLists.add("All");
-            ratingFilterLists.add("All");
+            priceFilterLists.add(getString(R.string.show_all_filter));
+            ratingFilterLists.add(getString(R.string.show_all_filter));
 
 
         } else if (resultTitleName.getText().equals(MainActivity.VIEW_ALL)) {
-            typeFilterLists.add("Show All");
+            typeFilterLists.add(getString(R.string.show_all_filter));
             typeFilterLists.add(MainActivity.ACTIVITIES);
             typeFilterLists.add(MainActivity.RESTAURANTS);
 
-            priceFilterLists.add("All");
-            ratingFilterLists.add("All");
+            priceFilterLists.add(getString(R.string.show_all_filter));
+            ratingFilterLists.add(getString(R.string.show_all_filter));
 
 
         }

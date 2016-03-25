@@ -56,10 +56,6 @@ public class DescriptionActivity extends AppCompatActivity {
 
             thingsToDoClassClassClickedItem = helper.createObjects(selectedId);
 
-
-            nameTextView.getText();
-
-
             nameTextView.setText(thingsToDoClassClassClickedItem.getPlaceName());
             descriptionTextView.setText(thingsToDoClassClassClickedItem.getPlaceInfo());
             locationTextView.setText(thingsToDoClassClassClickedItem.getPlaceAddress());

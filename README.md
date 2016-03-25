@@ -13,9 +13,9 @@ When a list is open, you can scroll and pick on the one you want more informatio
 
 <html>
 <body>
-<img src="http://i.imgur.com/c3ISfQ9.png?1" width = "175" height = "250">
-<img src="http://i.imgur.com/HE9euZt.png?1" width = "175" height = "250">
-<img src="http://i.imgur.com/hHwdVhD.png?1" width = "175" height = "250">
+<img src="http://i.imgur.com/c3ISfQ9.png?1" width = "150" height = "250">
+<img src="http://i.imgur.com/HE9euZt.png?1" width = "150" height = "250">
+<img src="http://i.imgur.com/hHwdVhD.png?1" width = "150" height = "250">
 </body>
 </html>
 
@@ -23,25 +23,7 @@ When a list is open, you can scroll and pick on the one you want more informatio
 
 - Created by Bill Ly
 
+------------
 
 Future update: more listings
 
-____________________________
-
-
-- Manual test cases
-
-<html>
-<body>
-<p>As a user, I can view the Restaurants list when I click on it.
-<br>As a user, I can select a list from the Restaurants list to pull up more information.
-<br>As a user, I can add the place to my favorite list.
-<br>As a user, I can remove the favorite from the favorite list.
-<br>As a user, I can view the Activities list when I click on it.
-<br>As a user, I can select a list from the Activities list to get more information.
-<br>As a user, I can view All the available things to do.
-<br>As a user, I can view my Favorite list from the main page if there is any added.
-<br>As a user, I can filter by certain type by choosing the dialog filter from the list results.
-<br>As a user, I can use the search function to certain for place name and type.</p>
-</body>
-</html>
