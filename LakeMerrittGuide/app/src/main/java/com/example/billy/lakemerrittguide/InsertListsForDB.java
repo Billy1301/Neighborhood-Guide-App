@@ -55,7 +55,6 @@ public class InsertListsForDB {
         restaurants.add(arizmendiRestaurant);
         restaurants.add(michelBistroRestaurant);
 
-
         return restaurants;
     }
 
