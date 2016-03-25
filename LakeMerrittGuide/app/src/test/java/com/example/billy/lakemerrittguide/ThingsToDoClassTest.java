@@ -6,7 +6,8 @@ import static junit.framework.Assert.assertEquals;
 
 
 /**
- * Created by Billy on 3/23/16.
+ * Created by Billy on 3/23/16.  --- this one is not connecting. did one on the default ExampleUnitTest class..
+ *
  */
 public class ThingsToDoClassTest {
 
