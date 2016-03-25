@@ -39,7 +39,6 @@ public class ResultListActivity extends AppCompatActivity  {
     private List<String> typeFilterLists, priceFilterLists, ratingFilterLists;
     private ImageView titleImageLogo;
     private Intent intent;
-
     private final static String PORTAL = "Portal";
     private final static String JONG_GA = "Jong Ga House";
     private final static String GRAND_LAKE = "Grand Lake Kitchen";
@@ -56,7 +55,7 @@ public class ResultListActivity extends AppCompatActivity  {
     private final static String WATER_SPORTS = "Water Sports";
     private final static String FAIRYLAND = "FairyLand";
     private final static String EXERCISE = "Exercise";
-    private final static String FLEA_MARKET = "Flea Market";
+    private final static String FARMER_MARKET = "Farmers Market";
     //endregion Private Variables
 
     public static final String ID_KEY_SENDING = "_id";
@@ -73,9 +72,7 @@ public class ResultListActivity extends AppCompatActivity  {
         setCustomCursorAdapter();
         handleIntent(getIntent());
         lakeMerrittListView.setAdapter(cursorAdapter);
-
         setListViewItemClicker();
-
 
         /**
          * these are for the filter spinners
@@ -86,9 +83,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
         setFilterNames();
         setSpinner();
-
         setFilterClicker();
-
 
     }
 
@@ -115,7 +110,6 @@ public class ResultListActivity extends AppCompatActivity  {
                     if (position == 3) {
                         cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getSteakhouseList();
                     }
-
                 } else if (resultTitleName.getText().equals(MainActivity.ACTIVITIES)) {
                     if (position == 0) {
                         cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getActivitiesList();
@@ -148,7 +142,6 @@ public class ResultListActivity extends AppCompatActivity  {
 
             }
         });
-
 
         priceFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -191,7 +184,6 @@ public class ResultListActivity extends AppCompatActivity  {
                     String rating = getRatingStringFromSpinnerPosition(position);
                     cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRatingLists(rating);
                 }
-
                 changeCursorRefreshAdapter();
             }
 
@@ -271,9 +263,9 @@ public class ResultListActivity extends AppCompatActivity  {
             typeFilterLists.add("Steakhouse");
 
             priceFilterLists.add("Price - Show All");
-            priceFilterLists.add("$");
-            priceFilterLists.add("$$");
-            priceFilterLists.add("$$$");
+            priceFilterLists.add(getString(R.string.low_price));
+            priceFilterLists.add(getString(R.string.moderatePrice));
+            priceFilterLists.add(getString(R.string.high_price));
 
             ratingFilterLists.add("Ratings - Show All");
             ratingFilterLists.add(getString(R.string.three_stars));
@@ -505,8 +497,8 @@ public class ResultListActivity extends AppCompatActivity  {
                 return R.drawable.fairylandlogo;
             case EXERCISE:
                 return R.drawable.exercising2;
-            case FLEA_MARKET:
-                return R.drawable.fleamarketlogo;
+            case FARMER_MARKET:
+                return R.drawable.farmermarketlogo;
             default:
                 return 0;
         }

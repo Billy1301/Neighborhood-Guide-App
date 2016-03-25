@@ -42,7 +42,7 @@
     <string name="waterSport_address">568 Bellevue Ave</string>
     <string name="fairyland_address">699 Bellevue Ave</string>
     <string name="exercise_address">Lake Merritt</string>
-    <string name="fleaMarket_address"><![CDATA[Grand Ave & Lake Park Ave]]></string>
+    <string name="farmerMarket_address"><![CDATA[Grand Ave & Lake Park Ave]]></string>
     <string name="portalName">Portal</string>
     <string name="jongGaName">Jong Ga House</string>
     <string name="grandLakeName">Grand Lake Kitchen</string>
@@ -59,7 +59,7 @@
     <string name="waterSportName">Water Sports</string>
     <string name="fairyLandName">FairyLand</string>
     <string name="exerciseName">Exercise</string>
-    <string name="fleaMarketName">Flea Market</string>
+    <string name="farmerMarketName">Farmers Market</string>
     <string name="portal_phone">510-663-7678</string>
     <string name="jongGaPhone">510-444-7678</string>
     <string name="grandLakePhone">510-922-9582</string>
