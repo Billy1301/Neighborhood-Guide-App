@@ -21,23 +21,23 @@ public class ThingsToDoClass {
 
     }
 
-    public ThingsToDoClass(String placeName, String placeAddress, String placeRatings, String placePhoneNumber, String placeType, String placePrice) {
+    public ThingsToDoClass(String placeName, String placeAddress, String placePhoneNumber, String placeRatings, String placePrice, String placeType) {
         this.placeName = placeName;
         this.placeAddress = placeAddress;
-        this.placeRatings = placeRatings;
         this.placePhoneNumber = placePhoneNumber;
-        this.placeType = placeType;
+        this.placeRatings = placeRatings;
         this.placePrice = placePrice;
+        this.placeType = placeType;
     }
 
     public ThingsToDoClass(String categoryTypes, String placeName, String placeAddress, String placePhoneNumber, String placeRatings, String placePrice, String placeType,  String placeInfo, int infoMainImageLogo, int infoImageOne, String favoriteStatus) {
         this.CategoryTypes = categoryTypes;
         this.placeName = placeName;
         this.placeAddress = placeAddress;
-        this.placeRatings = placeRatings;
         this.placePhoneNumber = placePhoneNumber;
-        this.placeType = placeType;
+        this.placeRatings = placeRatings;
         this.placePrice = placePrice;
+        this.placeType = placeType;
         this.placeInfo = placeInfo;
         this.infoMainImageLogo = infoMainImageLogo;
         this.infoImageOne = infoImageOne;

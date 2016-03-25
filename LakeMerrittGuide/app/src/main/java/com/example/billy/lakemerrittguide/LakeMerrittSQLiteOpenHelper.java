@@ -126,6 +126,10 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+    /**
+     * This gets all the listing
+     * @return
+     */
 
     public Cursor getLakeMerrittLists(){
 
@@ -174,7 +178,8 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         int imageOne = cursor.getInt(cursor.getColumnIndex(COL_LAKE_MERRITT_INFOIMAGEONE));
         String favorite = cursor.getString(cursor.getColumnIndex(COL_LAKE_MERRITT_FAVORITE_STATUS));
 
-        return new ThingsToDoClass(category, name, location, rating, phoneNumber,type, price, description, mainLogo, imageOne, favorite);
+
+        return new ThingsToDoClass(category, name, location, phoneNumber, rating, price, type, description, mainLogo, imageOne, favorite);
 
     }
 
@@ -211,6 +216,11 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
     }
 
+
+    /**
+     * This get only Restaurants list
+     * @return
+     */
     public Cursor getRestaurantList(){
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -290,7 +300,12 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getThreeStarsList(String rating){
+    /**
+     * The String rating pull the value from ResultListActivity for the input where I setup.
+     * @param rating
+     * @return
+     */
+    public Cursor getRatingLists(String rating){
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
@@ -304,34 +319,7 @@ public class LakeMerrittSQLiteOpenHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
-    public Cursor getFourStarsList(){
-        SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
-                COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_RATINGS + " = ?",
-                new String[]{"4 stars"},
-                null,
-                null,
-                null,
-                null);
-        return cursor;
-
-    }
-    public Cursor getFiveStarsList(){
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(COL_LAKE_MERRITT_TABLE_NAME,
-                COL_LAKE_MERRITT_COLUMNS,
-                COL_LAKE_MERRITT_RATINGS + " = ?",
-                new String[]{"5 stars"},
-                null,
-                null,
-                null,
-                null);
-        return cursor;
-
-    }
 
     /**
      * the (String "price") will pull the correct result from the filter according to the price filter(spinner) position from ResultListActivity

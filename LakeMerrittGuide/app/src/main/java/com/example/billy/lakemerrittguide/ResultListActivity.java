@@ -159,6 +159,7 @@ public class ResultListActivity extends AppCompatActivity  {
                     if (position == 0) {
                             cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
                     } else {
+                        //this part call the method below and set it accordingly
                         String price = getPriceStringFromSpinnerPosition(position);
                         cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getPriceList(price);
                     }
@@ -173,22 +174,26 @@ public class ResultListActivity extends AppCompatActivity  {
 
         );
 
-            ratingFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected (AdapterView < ? > parent, View view,int position,
-                long id){
-                    if (!resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
-                    return;
-                    }
-                    if (position == 0) {
-                        cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
-                    } else {
-                        String rating = getRatingStringFromSpinnerPosition(position);
-                        cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getThreeStarsList(rating);
-                    }
-
-                    changeCursorRefreshAdapter();
+        /**
+         * This is more a clean version to look at. First create a method with position argument with switch/case statements
+         * Then you can use it below with the SQLHelper class
+         */
+        ratingFilterSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected (AdapterView < ? > parent, View view,int position,
+            long id){
+                if (!resultTitleName.getText().equals(MainActivity.RESTAURANTS)) {
+                return;
                 }
+                if (position == 0) {
+                    cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRestaurantList();
+                } else {
+                    String rating = getRatingStringFromSpinnerPosition(position);
+                    cursor = LakeMerrittSQLiteOpenHelper.getInstance(ResultListActivity.this).getRatingLists(rating);
+                }
+
+                changeCursorRefreshAdapter();
+            }
 
             @Override
             public void onNothingSelected (AdapterView < ? > parent){
@@ -200,7 +205,7 @@ public class ResultListActivity extends AppCompatActivity  {
 
     /**
      * This method assign the spinner position to the price spinner.
-     * int pos will be placed into the spinner dialog box. 1 will be $, 2 will be $$
+     * int pos will be placed into the spinner dialog box. 1 will set to $, 2 will set to $$, 3 = $$$
      * @param pos
      * @return
      */
@@ -222,6 +227,11 @@ public class ResultListActivity extends AppCompatActivity  {
         return price;
     }
 
+    /**
+     * same logic as the price
+     * @param pos
+     * @return
+     */
 
     private String getRatingStringFromSpinnerPosition(int pos){
         String rating;

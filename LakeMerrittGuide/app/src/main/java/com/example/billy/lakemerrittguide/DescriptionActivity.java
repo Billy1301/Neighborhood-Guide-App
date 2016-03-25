@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 public class DescriptionActivity extends AppCompatActivity {
 
-    LakeMerrittSQLiteOpenHelper helper;
+    //region Private Variables
+    private LakeMerrittSQLiteOpenHelper helper;
     private ThingsToDoClass thingsToDoClassClassClickedItem;
     private TextView nameTextView;
     private TextView descriptionTextView;
@@ -22,7 +23,8 @@ public class DescriptionActivity extends AppCompatActivity {
     private ImageView infoImageOne;
     private int selectedId;
     private Button favoriteButton;
-
+    private TextView phoneNumber;
+    //endregion Private Variables
 
 
 
@@ -42,6 +44,9 @@ public class DescriptionActivity extends AppCompatActivity {
         }
 
 
+    /**
+     * This connect all the correct link and information to display on the Activity.
+     */
 
     public void getAndSetIntentToView() {
 
@@ -50,16 +55,27 @@ public class DescriptionActivity extends AppCompatActivity {
         if (selectedId >= 0) {
 
             thingsToDoClassClassClickedItem = helper.createObjects(selectedId);
+
+
+            nameTextView.getText();
+
+
             nameTextView.setText(thingsToDoClassClassClickedItem.getPlaceName());
             descriptionTextView.setText(thingsToDoClassClassClickedItem.getPlaceInfo());
             locationTextView.setText(thingsToDoClassClassClickedItem.getPlaceAddress());
             typeTextView.setText(thingsToDoClassClassClickedItem.getPlaceType());
             logoImage.setImageResource(thingsToDoClassClassClickedItem.getInfoMainImageLogo());
             infoImageOne.setImageResource(thingsToDoClassClassClickedItem.getInfoImageOne());
+            phoneNumber.setText(thingsToDoClassClassClickedItem.getPlacePhoneNumber());
 
         }
 
     }
+
+
+    /**
+     *This setup the favorite button correctly upon loading
+     */
 
     private void setFavoriteButtonImage(){
         if(thingsToDoClassClassClickedItem.getFavoriteStatus().equals(MainActivity.REMOVE_FAVORITE)){
@@ -72,6 +88,7 @@ public class DescriptionActivity extends AppCompatActivity {
 
     /**
      * This will let the user click on the heart icon to favorite it or remove favorite it
+     * The snackbar will notify them the status
      */
 
     public void setFavoriteButton(){
@@ -99,6 +116,10 @@ public class DescriptionActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * This setup all the views id
+     */
+
     public void setView(){
         nameTextView = (TextView)findViewById(R.id.descriptionPlaceTextView);
         descriptionTextView = (TextView)findViewById(R.id.descriptionInfoDetailText);
@@ -106,6 +127,7 @@ public class DescriptionActivity extends AppCompatActivity {
         typeTextView = (TextView)findViewById(R.id.descriptionTypeTextView);
         logoImage = (ImageView)findViewById(R.id.descriptionImageLogo);
         infoImageOne = (ImageView)findViewById(R.id.frameTwoImageOne);
+        phoneNumber = (TextView)findViewById(R.id.descriptionPhoneText);
         favoriteButton = (Button)findViewById(R.id.favoriteButton);
         helper = LakeMerrittSQLiteOpenHelper.getInstance(DescriptionActivity.this);
 
