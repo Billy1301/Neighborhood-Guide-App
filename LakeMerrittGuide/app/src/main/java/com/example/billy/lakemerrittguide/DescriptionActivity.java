@@ -1,6 +1,7 @@
 package com.example.billy.lakemerrittguide;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -36,9 +37,10 @@ public class DescriptionActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         setView();
-        getAndSetIntentToView();
-        setFavoriteButtonImage();
-        setFavoriteButton();
+        performSafeThread();
+        //getAndSetIntentToView();
+//        setFavoriteButtonImage();
+//        setFavoriteButton();
 
 
         }
@@ -128,6 +130,34 @@ public class DescriptionActivity extends AppCompatActivity {
         helper = LakeMerrittSQLiteOpenHelper.getInstance(DescriptionActivity.this);
 
 
+    }
+
+
+    private void performSafeThread() {
+        SafeThread async = new SafeThread();
+        async.execute();
+    }
+
+    private class SafeThread extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            getAndSetIntentToView();
+            setFavoriteButtonImage();
+            setFavoriteButton();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 
 }

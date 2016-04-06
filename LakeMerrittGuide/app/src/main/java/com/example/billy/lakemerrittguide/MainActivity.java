@@ -3,6 +3,7 @@ package com.example.billy.lakemerrittguide;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -102,13 +103,9 @@ public class MainActivity extends AppCompatActivity {
         int checkCount = cursor.getInt(0);
 
         if (checkCount <= 0) {
-
-            createDBItems();
-
+            performSafeThread();
         }
     }
-
-
 
     /**
      * assigning classes to DB
@@ -126,8 +123,32 @@ public class MainActivity extends AppCompatActivity {
             for (ThingsToDoClass activitiesListing : activitiesLists){
                 lakeMerrittHelper.listInsert(activitiesListing.getCategoryTypes(), activitiesListing.getPlaceName(), activitiesListing.getPlaceAddress(), activitiesListing.getPlacePhoneNumber(), activitiesListing.getPlaceRatings(), activitiesListing.getPlacePrice(), activitiesListing.getPlaceType(), activitiesListing.getPlaceInfo(), activitiesListing.getInfoMainImageLogo(),activitiesListing.getInfoImageOne(), activitiesListing.getFavoriteStatus());
             }
+    }
+
+    private void performSafeThread() {
+        SafeThread async = new SafeThread();
+        async.execute();
+    }
+
+    private class SafeThread extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
 
+        @Override
+        protected Void doInBackground(Void... params) {
+            createDBItems();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 
 }
