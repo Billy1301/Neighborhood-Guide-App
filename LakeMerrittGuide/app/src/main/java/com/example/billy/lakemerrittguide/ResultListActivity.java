@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.SearchView;
@@ -80,10 +81,8 @@ public class ResultListActivity extends AppCompatActivity  {
         typeFilterLists = new ArrayList<String>();
         priceFilterLists = new ArrayList<String>();
         ratingFilterLists = new ArrayList<String>();
-
         setFilterNames();
-        setSpinner();
-        setFilterClicker();
+        performSafeThread();
 
     }
 
@@ -523,6 +522,36 @@ public class ResultListActivity extends AppCompatActivity  {
         }
 
     }
+
+    private void performSafeThread() {
+        SafeThread async = new SafeThread();
+        async.execute();
+    }
+
+    private class SafeThread extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            setSpinner();
+            setFilterClicker();
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
+    }
+
+
 
 
 }
